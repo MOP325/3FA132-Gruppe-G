@@ -8,9 +8,9 @@
 	<version>0.0.1</version>
 
 	<properties>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
-		<java.version>21</java.version>
+		<maven.compiler.source>20</maven.compiler.source>
+		<maven.compiler.target>20</maven.compiler.target>
+		<java.version>20</java.version>
 
 		<jdbi.version>3.36.0</jdbi.version>
 		<lombok.version>1.18.24</lombok.version>
