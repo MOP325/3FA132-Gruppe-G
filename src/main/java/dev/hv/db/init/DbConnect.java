@@ -13,9 +13,7 @@ import java.io.InputStream;
 
 
 public class DbConnect implements IDbConnect {
-	
     private Jdbi jdbi;
-    private DbConnect dbConnect;
     private Properties dbProperties = new Properties();
 
     private String createCustomers = "CREATE TABLE Customers (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR)";
@@ -50,7 +48,7 @@ public class DbConnect implements IDbConnect {
     @Override
     public void createAllTables() {
 
-        Handle handle = dbConnect.getJdbi().open();
+        Handle handle = getJdbi().open();
         Update updateCustomer = null;
         Update updateReading = null;
         Update updateUser = null;
@@ -90,7 +88,7 @@ public class DbConnect implements IDbConnect {
     @Override
     public void removeAllTables() {
 
-        Handle handle = dbConnect.getJdbi().open();
+        Handle handle = getJdbi().open();
         Update updateCustomer = null;
         Update updateReading = null;
         Update updateUser = null;
