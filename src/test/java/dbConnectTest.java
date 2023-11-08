@@ -7,23 +7,32 @@ import java.util.List;
 public class dbConnectTest {
 
     public static void main(String[] args) {
-        String sql = "SELECT Id, FirstName, LastName FROM Customer";
 
-        DbConnect dbConnect = new DbConnect();
-        dbConnect.dBConnect("jdbc:sqlite:/Users/eliasdellingshausen/desktop/Hausverwaltung.db", "root", "root");
+        DbConnectJunit testOne = new DbConnectJunit();
+        testOne.setup();
+        testOne.testCreateAllTables();
+        testOne.testRemoveAllTables();
+        testOne.teardown();
 
-        Handle handle = dbConnect.getJdbi().open();
+        // String sql = "SELECT Id, FirstName, LastName FROM Customer";
 
-        List<Customer> customers = handle.createQuery(sql).mapToBean(Customer.class)
-                .list();
+        // DbConnect dbConnect = new DbConnect();
+        // dbConnect.dBConnect("jdbc:sqlite:/Users/eliasdellingshausen/desktop/Hausverwaltung.db",
+        // "root", "root");
 
-        handle.close();
+        // Handle handle = dbConnect.getJdbi().open();
 
-        for (Customer customer : customers) {
-            // Access and process customer data
-            System.out.println("ID: " + customer.getId() + ", FirstName: " + customer.getFirstName() + ", LastName: "
-                    + customer.getLastName());
-        }
+        // List<Customer> customers = handle.createQuery(sql).mapToBean(Customer.class)
+        // .list();
+
+        // handle.close();
+
+        // for (Customer customer : customers) {
+        // // Access and process customer data
+        // System.out.println("ID: " + customer.getId() + ", FirstName: " +
+        // customer.getFirstName() + ", LastName: "
+        // + customer.getLastName());
+        // }
 
     }
 }
