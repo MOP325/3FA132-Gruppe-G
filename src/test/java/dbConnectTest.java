@@ -1,9 +1,3 @@
-import org.jdbi.v3.core.Handle;
-
-import dev.hv.db.init.*;
-
-import java.util.List;
-
 public class dbConnectTest {
 
     public static void main(String[] args) {

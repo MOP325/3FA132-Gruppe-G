@@ -15,12 +15,13 @@ public class DbConnectJunit {
 
     @BeforeAll
     public void setup() {
-        // Initialize the DbConnect instance and create the database tables before each 
+        dbConnect = new DbConnect();
+        dbConnect.createAllTables();
+
     }
 
     @AfterAll
     public void teardown() {
-        // Remove the database tables after each test
         dbConnect.removeAllTables();
     }
 
