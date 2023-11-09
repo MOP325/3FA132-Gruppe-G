@@ -1,14 +1,20 @@
-
+import dev.hv.db.model.Customer;
 
 public class dbConnectTest {
 
     public static void main(String[] args) {
 
         DbConnectJunit testOne = new DbConnectJunit();
+        CustomerTest testTwo = new CustomerTest();
         testOne.setup();
-        // CustomerTest.testGetters();
+        testTwo.setup();
+
         testOne.testCreateAllTables();
 
+        testTwo.testGetters();
+        testTwo.testCustomerIdSetter();
+        testTwo.testCustomerFirstNameSetter();
+        testTwo.testCustomerLastNameSetter();
 
         testOne.teardown();
         testOne.testRemoveAllTables();
