@@ -1,24 +1,23 @@
 package dev.hv.db.model;
 
 public interface IDUser {
+   int getId();
 
-   String getFirstname();
+   void setId(int Id);
 
-   Long getId();
+   String getFirstName();
 
-   String getLastname();
+   void setFirstName(String FirstName);
+
+   String getLastName();
+
+   void setLastName(String LastName);
 
    String getPassword();
 
+   void setPassword(String Password);
+
    String getToken();
 
-   void setFirstname(String firstName);
-
-   void setId(Long id);
-
-   void setLastname(String lastName);
-
-   void setPassword(String password);
-
-   void setToken(String token);
+   void setToken(String Token);
 }
