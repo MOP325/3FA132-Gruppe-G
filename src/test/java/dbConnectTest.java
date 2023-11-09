@@ -1,12 +1,17 @@
+
+
 public class dbConnectTest {
 
     public static void main(String[] args) {
 
         DbConnectJunit testOne = new DbConnectJunit();
         testOne.setup();
+        // CustomerTest.testGetters();
         testOne.testCreateAllTables();
-        testOne.testRemoveAllTables();
+
+
         testOne.teardown();
+        testOne.testRemoveAllTables();
 
         // String sql = "SELECT Id, FirstName, LastName FROM Customer";
 
@@ -30,3 +35,5 @@ public class dbConnectTest {
 
     }
 }
+
+// org.jdbi.v3.core.statement.UnableToCreateStatementException: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (table Users already exists) [statement:"CREATE TABLE Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR, Password VARCHAR, Token VARCHAR)", arguments:{positional:{}, named:{}, finder:[]}

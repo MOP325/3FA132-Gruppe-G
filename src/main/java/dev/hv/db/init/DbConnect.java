@@ -65,7 +65,7 @@ public class DbConnect implements IDbConnect {
             updateUser.execute();
 
             handle.commit();
-            System.out.println("Datenbanktabellen wurden erfolgreich erstellt.");
+            System.out.println("Tables created succesfully");
         } catch (Exception e) {
             handle.rollback();
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class DbConnect implements IDbConnect {
             updateReading.execute();
 
             updateUser = handle.createUpdate(dropUsers);
-            updateReading.execute();
+            updateUser.execute();
 
             System.out.println("Tables removed successfully.");
         } catch (Exception e) {
