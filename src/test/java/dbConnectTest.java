@@ -1,3 +1,5 @@
+import dev.hv.db.model.Customer;
+
 public class dbConnectTest {
 
     public static void main(String[] args) {
