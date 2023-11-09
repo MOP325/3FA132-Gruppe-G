@@ -20,6 +20,7 @@ public class Customer implements IDCustomer {
     // No Id needed in Constructor
     @ConstructorProperties({"c_Id", "c_FirstName", "c_LastName"})
     public Customer(int Id, String FirstName, String LastName) {
+        this.Id = Id;
         this.FirstName = FirstName;
         this.LastName = LastName;
     }
