@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import dev.hv.db.model.Customer;
+import dev.hv.db.model.IDCustomer;
 
-public class DAOCustomer<T extends Customer> { // Assuming T is a Customer type
+public class DAOCustomer<T extends IDCustomer> {
 
     private String jdbcURL = "jdbc:your_database_url";
     private String jdbcUsername = "username";
@@ -41,7 +41,6 @@ public class DAOCustomer<T extends Customer> { // Assuming T is a Customer type
 
             preparedStatement.setString(1, customer.getFirstName());
             preparedStatement.setString(2, customer.getLastName());
-
             int affectedRows = preparedStatement.executeUpdate();
 
             if (affectedRows > 0) {
@@ -76,10 +75,11 @@ public class DAOCustomer<T extends Customer> { // Assuming T is a Customer type
      * customer.setId(id);
      * update(customer);
      * }
+     * 
+     * public void delete(T customer) {
      * delete(customer.getId());
      * }
-     */ public void delete(T customer) {
-    }
+     */
 
     public void delete(Long id) {
         try (Connection connection = getConnection();
@@ -90,6 +90,5 @@ public class DAOCustomer<T extends Customer> { // Assuming T is a Customer type
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }
