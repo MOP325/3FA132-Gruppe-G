@@ -1,19 +1,43 @@
 package dev.hv.db.init;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.statement.Update;
 
-class DbConnect implements IDbConnect {
+import java.util.Properties;
+
+import org.jdbi.v3.core.Handle;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+
+public class DbConnect implements IDbConnect {
     private Jdbi jdbi;
+    private Properties dbProperties = new Properties();
 
-    public String dBConnect (String uri, String user, String pw) {
-        // Initialize the Jdbi instance with the SQLite database connection
-        this.jdbi = Jdbi.create(uri, user, pw);
-        return "";
-    }
+    private String createCustomers = "CREATE TABLE Customers (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR)";
+    private String createReading = "CREATE TABLE Reading (Id INTEGER PRIMARY KEY AUTOINCREMENT,cId INTEGER, MeterId INTEGER, DateOfReading VARCHAR, KindOfMeter VARCHAR, MeterCount DOUBLE,Substitute INTEGER DEFAULT 0, Comment VARCHAR,FOREIGN KEY (cId) REFERENCES Customer(Id))";
+    private String createUsers = "CREATE TABLE Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR, Password VARCHAR, Token VARCHAR)";
+
+    private String dropCustomers = "DROP TABLE IF EXISTS Customers";
+    private String dropReading = "DROP TABLE IF EXISTS Reading";
+    private String dropUsers = "DROP TABLE IF EXISTS Users";
 
     @Override
     public Jdbi getJdbi() {
+        loadProperties();
+        Jdbi jdbi = Jdbi.create(dbProperties.getProperty("db.url"));
         return jdbi;
+    }
+    
+    private void loadProperties() {
+    	try (InputStream input = new FileInputStream("src/config.txt"); ) {
+        	dbProperties.load(input);
+    	} catch (IOException ex) {
+    		ex.printStackTrace();
+    	}
+
     }
 
     @Override
@@ -23,25 +47,78 @@ class DbConnect implements IDbConnect {
 
     @Override
     public void createAllTables() {
-        // Implement the logic to create tables using JDBI's @CreateSqlObject or other methods.
-        // This method is responsible for initializing your database schema.
+
+        Handle handle = getJdbi().open();
+        Update updateCustomer = null;
+        Update updateReading = null;
+        Update updateUser = null;
+        try {
+            handle.begin(); // Begin a transaction
+
+            updateCustomer = handle.createUpdate(createCustomers);
+            updateCustomer.execute();
+
+            updateReading = handle.createUpdate(createReading);
+            updateReading.execute();
+
+            updateUser = handle.createUpdate(createUsers);
+            updateUser.execute();
+
+            handle.commit();
+            System.out.println("Tables created succesfully");
+        } catch (Exception e) {
+            handle.rollback();
+            e.printStackTrace();
+        } finally {
+            if (updateCustomer != null) {
+                updateCustomer.close();
+            }
+            if (updateReading != null) {
+                updateReading.close();
+            }
+
+            if (updateUser != null) {
+                updateUser.close();
+            }
+
+            handle.close();
+        }
     }
 
     @Override
     public void removeAllTables() {
-        // Implement the logic to remove all tables.
+
+        Handle handle = getJdbi().open();
+        Update updateCustomer = null;
+        Update updateReading = null;
+        Update updateUser = null;
+
+        try {
+            updateCustomer = handle.createUpdate(dropCustomers);
+            updateCustomer.execute();
+
+            updateReading = handle.createUpdate(dropReading);
+            updateReading.execute();
+
+            updateUser = handle.createUpdate(dropUsers);
+            updateUser.execute();
+
+            System.out.println("Tables removed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (updateCustomer != null) {
+                updateCustomer.close();
+            }
+            if (updateReading != null) {
+                updateReading.close();
+            }
+
+            if (updateUser != null) {
+                updateUser.close();
+            }
+
+            handle.close();
+        }
     }
 }
-
-// DBConnect dbConnect = new DBConnectImpl("jdbc:sqlite:/path/to/your/database.db", "username", "password");
-
-// // Access Jdbi instance
-// Jdbi jdbi = dbConnect.getJdbi();
-
-// // Create tables
-// dbConnect.createAllTables();
-
-// // Remove tables
-// dbConnect.removeAllTables();
-
-// This method is used to create and return a new Jdbi instance with a specified database connection URI, username, and password. It is typically used for initializing a Jdbi instance with connection details for a specific database. You would call this method when you want to work with a different database or when you need a separate Jdbi instance for a specific purpose. The Jdbi instance created with this method is not shared with other parts of your application.

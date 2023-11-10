@@ -27,18 +27,19 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
+		
+	 	<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>3.43.0.0</version>
 		</dependency>
 
-		<!-- <dependency>
+		 <!-- dependency>
 			<groupId>org.duckdb</groupId>
 			<artifactId>duckdb_jdbc</artifactId>
 			<version>0.9.0</version>
-		</dependency>
-		-->
+		</dependency> -->
+		
 
 		<!-- <dependency>
 			<groupId>org.mariadb.jdbc</groupId>
@@ -65,8 +66,47 @@
 			<artifactId>jdbi3-guava</artifactId>
 			<version>${jdbi.version}</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.2.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>1.2.0</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
+	
+	<build>
+    	<plugins>
+		   <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.8.1</version> 
+	            
+      	  	</plugin>
+        	<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-surefire-plugin</artifactId>
+           	 <version>3.0.0</version>
+            	<configuration>
+               	 <reportsDirectory>${project.build.directory}/target/surefire-reports</reportsDirectory>
+           	 </configuration>
+       	 </plugin>
+    	</plugins>
+	    <sourceDirectory>src/main/java</sourceDirectory>
+	    <testSourceDirectory>src/test/java</testSourceDirectory>
+	    <!-- Weitere Konfigurationen -->
+	</build>
+	
+
+
+
 </project>
+
