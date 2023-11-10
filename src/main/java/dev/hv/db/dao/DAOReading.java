@@ -1,101 +1,39 @@
 package dev.hv.db.dao;
 
-import dev.hv.db.model.IDReading;
+import org.jdbi.v3.core.Jdbi;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import dev.hv.db.model.Reading;
 
-public class DAOReading<T extends IDReading> {
+import java.util.List;
 
-    private String jdbcURL = "jdbc:your_database_url";
-    private String jdbcUsername = "username";
-    private String jdbcPassword = "password";
+public class DAOReading {
 
-    // SQL queries for CRUD operations
-    private static final String INSERT_READINGS_SQL = "INSERT INTO readings (cId, meterId, dateOfReading, kindOfMeter, meterCount, substitute, comment) VALUES (?, ?, ?, ?, ?, ?, ?);";
-    private static final String UPDATE_READINGS_SQL = "UPDATE readings SET cId = ?, meterId = ?, dateOfReading = ?, kindOfMeter = ?, meterCount = ?, substitute = ?, comment = ? WHERE id = ?;";
-    private static final String DELETE_READINGS_SQL = "DELETE FROM readings WHERE id = ?;";
+    private Jdbi jdbi;
 
     public DAOReading() {
-        // Constructor
+        // Initialize JDBI (usually done once and passed as a dependency)
+        jdbi = Jdbi.create("jdbc:your_database_url", "username", "password");
     }
 
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
+    public void insert(Reading reading) {
+        jdbi.useExtension(ReadingDAO.class, dao -> dao.insert(reading.getcId(), reading.getMeterId(),
+                reading.getKindOfMeter(), reading.getMeterCount(), reading.getSubstitute(), reading.getComment()));
     }
 
-    public long insert(T reading) {
-        long newId = 0;
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_READINGS_SQL,
-                        Statement.RETURN_GENERATED_KEYS)) {
-
-            preparedStatement.setInt(1, reading.getcId());
-            preparedStatement.setInt(2, reading.getMeterId());
-            preparedStatement.setString(3, reading.getDateOfReading());
-            preparedStatement.setString(4, reading.getKindOfMeter());
-            preparedStatement.setDouble(5, reading.getMeterCount());
-            preparedStatement.setInt(6, reading.getSubstitute());
-            preparedStatement.setString(7, reading.getComment());
-
-            int affectedRows = preparedStatement.executeUpdate();
-
-            if (affectedRows > 0) {
-                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        newId = generatedKeys.getLong(1);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return newId;
+    public void update(Reading reading) {
+        jdbi.useExtension(ReadingDAO.class, dao -> dao.update(reading.getId(), reading.getcId(), reading.getMeterId(),
+                reading.getKindOfMeter(), reading.getMeterCount(), reading.getSubstitute(), reading.getComment()));
     }
 
-    public void update(T reading) {
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_READINGS_SQL)) {
-
-            preparedStatement.setInt(1, reading.getcId());
-            preparedStatement.setInt(2, reading.getMeterId());
-            preparedStatement.setString(3, reading.getDateOfReading());
-            preparedStatement.setString(4, reading.getKindOfMeter());
-            preparedStatement.setDouble(5, reading.getMeterCount());
-            preparedStatement.setInt(6, reading.getSubstitute());
-            preparedStatement.setString(7, reading.getComment());
-            preparedStatement.setLong(8, reading.getId());
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public Reading findById(int id) {
+        return jdbi.withExtension(ReadingDAO.class, dao -> dao.findById(id));
     }
 
-    /*
-     * public void delete(T reading) {
-     * delete(reading.getId());
-     * }
-     * 
-     */
-    public void delete(Long id) {
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(DELETE_READINGS_SQL)) {
-            preparedStatement.setLong(1, id);
+    public List<Reading> findAll() {
+        return jdbi.withExtension(ReadingDAO.class, ReadingDAO::findAll);
+    }
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void delete(int id) {
+        jdbi.useExtension(ReadingDAO.class, dao -> dao.delete(id));
     }
 }
