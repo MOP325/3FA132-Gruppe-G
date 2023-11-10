@@ -130,7 +130,7 @@ public class ReadingTest {
         // Test Comment setter
         try {
             reading.setComment("TestComment");
-            assertEquals("Test", null);
+            assertEquals("TestComment", reading.getComment());
         } catch (Exception e) {
             e.printStackTrace();
         }
