@@ -23,7 +23,7 @@ public class ReadingTest {
             assertEquals(1, reading.getcId());
             assertEquals(1, reading.getMeterId());
             assertEquals("TestKindOfMeter", reading.getKindOfMeter());
-            assertEquals(1.1, reading.getMeterCount());
+            assertEquals(1.1, reading.getMeterCount(), 0.0001);
             assertEquals(1, reading.getSubstitute());
             assertEquals("TestComment", reading.getComment());
         }
@@ -100,7 +100,7 @@ public class ReadingTest {
         // Test MeterCount setter
         try {
             reading.setMeterCount(4.1);
-            assertEquals(4.1, reading.getMeterCount());
+            assertEquals(4.1, reading.getMeterCount(), 0.0001);
         }
         catch (Exception e) {
             e.printStackTrace();

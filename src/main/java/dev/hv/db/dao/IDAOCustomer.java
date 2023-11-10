@@ -2,7 +2,7 @@ package dev.hv.db.dao;
 
 import java.util.List;
 
-public class DAOCustomer{
+public class IDAOCustomer{
 
 	private String jdbcURL = "jdbc:your_database_url";
     private String jdbcUsername = "username";
