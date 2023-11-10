@@ -7,13 +7,22 @@ public class dbConnectTest {
 
         testOne.setup();
         testTwo.setup();
+        testThree.setup();
 
+        
         testOne.testCreateAllTables();
-
+        
         testTwo.testGetters();
         testTwo.testCustomerIdSetter();
         testTwo.testCustomerFirstNameSetter();
         testTwo.testCustomerLastNameSetter();
+        
+        testThree.testGetters();
+        testThree.testUserIdSetter();
+        testThree.testUserFirstNameSetter();
+        testThree.testUserLastNameSetter();
+        testThree.testUserPasswordSetter();
+        testThree.testUserTokenSetter();
 
         testOne.teardown();
         testOne.testRemoveAllTables();
