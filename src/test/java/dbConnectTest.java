@@ -4,15 +4,25 @@ public class dbConnectTest {
 
         DbConnectJunit testOne = new DbConnectJunit();
         CustomerTest testTwo = new CustomerTest();
+        UserTest testThree = new UserTest();
+
         testOne.setup();
         testTwo.setup();
+        testThree.setup();
 
         testOne.testCreateAllTables();
-
+        
         testTwo.testGetters();
         testTwo.testCustomerIdSetter();
         testTwo.testCustomerFirstNameSetter();
         testTwo.testCustomerLastNameSetter();
+        
+        testThree.testGetters();
+        testThree.testUserIdSetter();
+        testThree.testUserFirstNameSetter();
+        testThree.testUserLastNameSetter();
+        testThree.testUserPasswordSetter();
+        testThree.testUserTokenSetter();
 
         testOne.teardown();
         testOne.testRemoveAllTables();

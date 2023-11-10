@@ -13,10 +13,6 @@ public interface IDReading {
 
    void setMeterId(int meterId);
 
-   String getDateOfReading();
-
-   void setDateOfReading(String dateOfReading);
-
    String getKindOfMeter();
 
    void setKindOfMeter(String kindOfMeter);
