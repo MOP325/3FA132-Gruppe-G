@@ -10,7 +10,6 @@ public class dbConnectTest {
         testTwo.setup();
         testThree.setup();
 
-        
         testOne.testCreateAllTables();
         
         testTwo.testGetters();
