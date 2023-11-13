@@ -1,5 +1,4 @@
 {
   "java.configuration.updateBuildConfiguration": "interactive",
-  "java.compile.nullAnalysis.mode": "automatic",
-  "java.jdt.ls.java.home": "/home/jeremyrentschler/Desktop/test/jdk-21.0.1+12"
+  "java.compile.nullAnalysis.mode": "automatic"
 }
