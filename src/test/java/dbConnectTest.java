@@ -2,30 +2,41 @@ public class dbConnectTest {
 
     public static void main(String[] args) {
 
-        DbConnectJunit testOne = new DbConnectJunit();
-        CustomerTest testTwo = new CustomerTest();
-        UserTest testThree = new UserTest();
+        DbConnectJunit junitTest = new DbConnectJunit();
+        CustomerTest customerTest = new CustomerTest();
+        UserTest userTest = new UserTest();
+        ReadingTest readingTest = new ReadingTest();
 
-        testOne.setup();
-        testTwo.setup();
-        testThree.setup();
-
-        testOne.testCreateAllTables();
+        junitTest.setup();
+        customerTest.setup();
+        userTest.setup();
+        readingTest.setup();
         
-        testTwo.testGetters();
-        testTwo.testCustomerIdSetter();
-        testTwo.testCustomerFirstNameSetter();
-        testTwo.testCustomerLastNameSetter();
+        junitTest.testCreateAllTables();
         
-        testThree.testGetters();
-        testThree.testUserIdSetter();
-        testThree.testUserFirstNameSetter();
-        testThree.testUserLastNameSetter();
-        testThree.testUserPasswordSetter();
-        testThree.testUserTokenSetter();
+        customerTest.testGetters();
+        customerTest.testCustomerIdSetter();
+        customerTest.testCustomerFirstNameSetter();
+        customerTest.testCustomerLastNameSetter();
+        
+        userTest.testGetters();
+        userTest.testUserIdSetter();
+        userTest.testUserFirstNameSetter();
+        userTest.testUserLastNameSetter();
+        userTest.testUserPasswordSetter();
+        userTest.testUserTokenSetter();
 
-        testOne.teardown();
-        testOne.testRemoveAllTables();
+        readingTest.testReadingGetters();
+        readingTest.testReadingIdSetter();
+        readingTest.testReadingcIdSetter();
+        readingTest.testReadingMeterIdSetter();
+        readingTest.testreadingKindOfMeterSetter();
+        readingTest.testMeterCountSetter();
+        readingTest.testSubstituteSetter();
+        readingTest.testCommentSetter();
+
+        junitTest.teardown();
+        junitTest.testRemoveAllTables();
 
         // String sql = "SELECT Id, FirstName, LastName FROM Customer";
 
