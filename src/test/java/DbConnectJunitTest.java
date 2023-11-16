@@ -37,12 +37,12 @@ public class DbConnectJunitTest {
             System.out.println(handle.select("SELECT 1 FROM Customers"));
         }
         catch (Exception e) {
-            System.out.println("Failed the Test to creat all Tables in the DbConnectJunitTest");
+            System.out.println("DbConnectJunitTest failed to creat all Tables");
             e.printStackTrace();
 
         } 
         finally {
-        System.out.println("Tables creation test completed.");
+        System.out.println("DbConnectJunitTest create tables test completed.");
         }
     }
 
@@ -54,10 +54,10 @@ public class DbConnectJunitTest {
             assertEquals(0, handle.select("SELECT name FROM sqlite_master WHERE type='table' AND (name='Customers' OR name='Reading' OR name='Users');").mapTo(Boolean.class).list().size());
         }
         catch(Exception e) {
-               System.out.println("Failed the Test to remove all Tables in the DbConnectJunitTest");
+               System.out.println("DbConnectJunitTest failed to remove all Tables");
         }
         finally {
-            System.out.println("Delete tables test completed.");
+            System.out.println("DbConnectJunitTest delete tables test completed.");
         }
     }
 }

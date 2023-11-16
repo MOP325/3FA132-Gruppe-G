@@ -108,7 +108,4 @@ public class Reading implements IDReading {
     public void setComment(String comment) {
         this.Comment = comment;
     }
-
-
-
 }
