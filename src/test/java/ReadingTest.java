@@ -12,7 +12,7 @@ public class ReadingTest {
 
     @BeforeEach
     public void setup() {
-        reading = new Reading(1, 1, 1, "TestKindOfMeter", 1.1, 1, "TestComment");
+        this.reading = new Reading(1, 1, 1, "TestKindOfMeter", 1.1, 1, "TestComment");
     }
 
     @Test

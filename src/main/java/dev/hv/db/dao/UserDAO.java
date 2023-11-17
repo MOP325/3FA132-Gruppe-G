@@ -25,4 +25,3 @@ public interface UserDAO {
     @SqlUpdate("DELETE FROM users WHERE u_Id = :id")
     void delete(@Bind("id") int id);
 }
-

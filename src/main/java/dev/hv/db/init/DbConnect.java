@@ -1,7 +1,6 @@
 package dev.hv.db.init;
 
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.statement.Update;
 
 import java.util.Properties;
 
@@ -13,7 +12,6 @@ import java.io.InputStream;
 
 
 public class DbConnect implements IDbConnect {
-    private Jdbi jdbi;
     private Properties dbProperties = new Properties();
 
     private String createCustomers = "CREATE TABLE Customers (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR)";
@@ -49,20 +47,13 @@ public class DbConnect implements IDbConnect {
     public void createAllTables() {
 
         Handle handle = getJdbi().open();
-        Update updateCustomer = null;
-        Update updateReading = null;
-        Update updateUser = null;
+        
         try {
-            handle.begin(); // Begin a transaction
+            handle.begin();
 
-            updateCustomer = handle.createUpdate(createCustomers);
-            updateCustomer.execute();
-
-            updateReading = handle.createUpdate(createReading);
-            updateReading.execute();
-
-            updateUser = handle.createUpdate(createUsers);
-            updateUser.execute();
+            handle.createUpdate(createCustomers).execute();
+            handle.createUpdate(createReading).execute();
+            handle.createUpdate(createUsers).execute();
 
             handle.commit();
             System.out.println("Tables created succesfully");
@@ -70,17 +61,6 @@ public class DbConnect implements IDbConnect {
             handle.rollback();
             e.printStackTrace();
         } finally {
-            if (updateCustomer != null) {
-                updateCustomer.close();
-            }
-            if (updateReading != null) {
-                updateReading.close();
-            }
-
-            if (updateUser != null) {
-                updateUser.close();
-            }
-
             handle.close();
         }
     }
@@ -89,35 +69,16 @@ public class DbConnect implements IDbConnect {
     public void removeAllTables() {
 
         Handle handle = getJdbi().open();
-        Update updateCustomer = null;
-        Update updateReading = null;
-        Update updateUser = null;
-
+        
         try {
-            updateCustomer = handle.createUpdate(dropCustomers);
-            updateCustomer.execute();
-
-            updateReading = handle.createUpdate(dropReading);
-            updateReading.execute();
-
-            updateUser = handle.createUpdate(dropUsers);
-            updateUser.execute();
-
+            handle.createUpdate(dropCustomers).execute();
+            handle.createUpdate(dropReading).execute();
+            handle.createUpdate(dropUsers).execute();
+            
             System.out.println("Tables removed successfully.");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (updateCustomer != null) {
-                updateCustomer.close();
-            }
-            if (updateReading != null) {
-                updateReading.close();
-            }
-
-            if (updateUser != null) {
-                updateUser.close();
-            }
-
             handle.close();
         }
     }

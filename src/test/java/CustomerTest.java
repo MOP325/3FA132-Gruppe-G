@@ -10,7 +10,7 @@ public class CustomerTest {
 
     @BeforeEach
     public void setup() {
-        customer = new Customer(1, "John", "Doe");
+        this.customer = new Customer(1, "John", "Doe");
     }
 
     @Test
