@@ -44,6 +44,8 @@ public class DbConnectJunitTest {
         finally {
         System.out.println("DbConnectJunitTest create tables test completed.");
         }
+    
+    
     }
 
     @Test

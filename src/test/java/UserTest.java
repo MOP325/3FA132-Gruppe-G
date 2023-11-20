@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,12 +22,12 @@ public class UserTest{
             assertEquals("Rentschler", user.getLastName());
             assertEquals("123", user.getPassword());
             assertEquals("12344442323242", user.getToken());
+        
+            System.out.println("User Getters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("User Getters test succesfull");
+            fail("User getters test failed: " + e.getMessage())
         }
     }
 
@@ -35,12 +36,12 @@ public class UserTest{
         try {
             user.setId(2);
             assertEquals(2, user.getId());
+
+            System.out.println("UserId setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("UserId setters test succesfull");
+            fail("UserId setter test failed: " + e.getMessage());
         }
     }
 
@@ -49,12 +50,12 @@ public class UserTest{
         try {
             user.setFirstName("Jeremy");
             assertEquals("Jeremy", user.getFirstName());
+    
+            System.out.println("UserFirstName setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("UserFirstName setters test succesfull");
+            fail("UserFirstName setter test failed: " + e.getMessage());
         }
     }
 
@@ -63,12 +64,12 @@ public class UserTest{
         try {
             user.setLastName("Rentschler");
             assertEquals("Rentschler", user.getLastName());
+
+            System.out.println("UsersLastName setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("UsersLastName setters test succesfull");
+            fail("UserLastName setter test failed: " + e.getMessage());
         }
 
     }
@@ -77,12 +78,12 @@ public class UserTest{
         try {
             user.setPassword("123");
             assertEquals("123", user.getPassword());
+        
+            System.out.println("userPassword setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("userPassword setters test succesfull");
+            fail("UserPassword setter test failed: " + e.getMessage());
         }
 
     }
@@ -91,13 +92,12 @@ public class UserTest{
         try {
             user.setToken("12344442323242");
             assertEquals("12344442323242", user.getToken());
+
+            System.out.println("userToken setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
+            fail("UserToken setters test failed: " + e.getMessage());
         }
-        finally {
-            System.out.println("userToken setters test succesfull");
-        }
-
     }
 }

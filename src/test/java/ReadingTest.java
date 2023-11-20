@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,12 +27,12 @@ public class ReadingTest {
             assertEquals(1.1, reading.getMeterCount(), 0.0001);
             assertEquals(1, reading.getSubstitute());
             assertEquals("TestComment", reading.getComment());
+    
+            System.out.println("Reading getters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Reading getters test succesfull");
+            fail("Reading getters test failed: " + e.getMessage());
         }
     }
 
@@ -41,12 +42,12 @@ public class ReadingTest {
         try {
             reading.setId(1);
             assertEquals(1, reading.getId());
+            
+            System.out.println("ReadingId setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingId setters test succesfull");
+            fail("ReadingId setter test failed: " + e.getMessage());
         }
     }
 
@@ -56,12 +57,12 @@ public class ReadingTest {
         try {
             reading.setcId(2);
             assertEquals(2, reading.getcId());
+    
+            System.out.println("ReadingcId setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingcId setters test succesfull");
+            fail("ReadingcId setter test failed: " + e.getMessage());
         }
     }
 
@@ -71,12 +72,12 @@ public class ReadingTest {
         try {
             reading.setMeterId(3);
             assertEquals(3, reading.getMeterId());
+    
+            System.out.println("ReadingMeterId setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingMeterId setters test succesfull");
+            fail("RadingMeterId setter test failed: " + e.getMessage());
         }
     }
 
@@ -86,12 +87,12 @@ public class ReadingTest {
         try {
             reading.setKindOfMeter("TestKindOfMeter");
             assertEquals("TestKindOfMeter", reading.getKindOfMeter());
+   
+            System.out.println("ReadingKindOfMeter setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingKindOfMeter setters test succesfull");
+            fail("ReadingKindOfMeter setter test failed: " e.getMessage());
         }
     }
 
@@ -101,12 +102,12 @@ public class ReadingTest {
         try {
             reading.setMeterCount(4.1);
             assertEquals(4.1, reading.getMeterCount(), 0.0001);
+
+            System.out.println("ReadingMeterCount setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingMeterCount setters test succesfull");
+            fail("ReadingMeterCount setter test failed: " + e.getMessage());
         }
     }
 
@@ -116,12 +117,12 @@ public class ReadingTest {
         try {
             reading.setSubstitute(5);
             assertEquals(5, reading.getSubstitute());
+    
+        System.out.println("ReadingSubstitute setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingSubstitute setters test succesfull");
+            fail("ReadingSubstitute setter test failed: " + e.getMessage());
         }
     }
 
@@ -131,11 +132,11 @@ public class ReadingTest {
         try {
             reading.setComment("TestComment");
             assertEquals("TestComment", reading.getComment());
+
+            System.out.println("ReadingComment setters test succesfull");
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("ReadingComment setters test succesfull");
+            fail("ReadingComment setter test failed: " + e.getMessage());
         }
     }
 }
