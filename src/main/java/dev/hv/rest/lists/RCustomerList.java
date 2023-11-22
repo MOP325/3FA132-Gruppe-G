@@ -1,4 +1,4 @@
-package de.gc.hv.rest.model;
+package dev.hv.rest.lists;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,8 +12,8 @@ public class RCustomerList extends ArrayList<IRCustomer> {
    }
 
    public RCustomerList(final Collection<? extends RCustomer> c) { 
-      super(c);
-  }
+
+   }
 
    public RCustomerList(final int initialCapacity) {
       super(initialCapacity);
