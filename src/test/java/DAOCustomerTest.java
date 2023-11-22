@@ -24,12 +24,11 @@ public class DAOCustomerTest {
             assertEquals(customer.getId(), foundCustomer.getId());
             assertEquals(customer.getFirstName(), foundCustomer.getFirstName());
             assertEquals(customer.getLastName(), foundCustomer.getLastName());
-        
+            System.out.println("Test DAOCustomer find by id successful");
+
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOCustomer find by id successful");
+            System.out.println("Test DAOCustomer find by id failed: " + e.getMessage());
         }
     }
 
@@ -56,11 +55,10 @@ public class DAOCustomerTest {
             assertEquals(customer.getFirstName(), updateCustomer.getFirstName());
             assertEquals(customer.getLastName(), updateCustomer.getLastName());
 
+            System.out.println("Test DaoCustomer update successful");
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DaoCustomer update successful");
+            System.out.println("Test DAOCustomer update failed: " + e.getMessage());
         }
     }
 
@@ -79,11 +77,10 @@ public class DAOCustomerTest {
             assertNotNull(customerList);
             assertEquals(3, customerList.size());
 
+            System.out.println("Test DAOCustomer find all successful");
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOCustomer find all successful");
+            System.out.println("Test DAOCustomer find all failed: " + e.getMessage());
         }
     }
 
@@ -101,11 +98,10 @@ public class DAOCustomerTest {
             Customer deletedCustomer = daoCustomer.findById(1);
             assertNotNull(deletedCustomer);
 
+            System.out.println("Test DAOCustomer delete successful");
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOCustomer delete successful");
+            System.out.println("Test DAOCustomer delete failed: " + e.getMessage());
         }
     }
 }

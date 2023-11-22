@@ -28,12 +28,11 @@ public class DAOReadingTest {
             assertEquals(reading.getMeterCount(), foundReading.getMeterCount());
             assertEquals(reading.getSubstitute(), foundReading.getSubstitute());
             assertEquals(reading.getComment(), foundReading.getComment());
+            System.out.println("Test DAOReading find by id successful");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOReading find by id successful");
+            System.out.println("Test DAOReading find by id failed: " + e.getMessage());
         }
     }
 
@@ -67,14 +66,13 @@ public class DAOReadingTest {
             assertEquals(reading.getMeterCount(), updatedReading.getMeterCount());
             assertEquals(reading.getSubstitute(), updatedReading.getSubstitute());
             assertEquals(reading.getComment(), updatedReading.getComment());
+
+            System.out.println("Test DAOReading update successful");
         }
         catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Test DAOReading update failed: " + e.getMessage());
         }
-        finally {
-            System.out.println("Test DAOReading update successful");
-        }
-
     }
 
     @Test
@@ -90,14 +88,12 @@ public class DAOReadingTest {
                 List<Reading> readingList = daoReading.findAll();
                 assertNotNull(readingList);
                 assertEquals(3, readingList.size());
-            }
+                 System.out.println("Test DAOReading find all successful");
+           }
         catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Test DAOReading find all failed: " + e.getMessage());
         }
-        finally {
-            System.out.println("Test DAOReading find all successful");
-        }
-
     }
 
     @Test
@@ -114,12 +110,12 @@ public class DAOReadingTest {
             // Should return null
             Reading deletedReading = daoReading.findById(1);
             assertNull(deletedReading);
+
+            System.out.println("Test DAOReading delete successful");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOReading delete successful");
+            System.out.println("Test DAOReading delete failed: " + e.getMessage());
         }
 
     }

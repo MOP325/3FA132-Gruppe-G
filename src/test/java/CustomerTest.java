@@ -20,12 +20,11 @@ public class CustomerTest {
         assertEquals(1, customer.getId());
         assertEquals("John", customer.getFirstName());
         assertEquals("Doe", customer.getLastName());
+        System.out.println("Customer getters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Customer Getters test succesfull");
+            System.out.println("Customer getterts test failed: " + e.getMessage());
         }
     }
 
@@ -35,12 +34,11 @@ public class CustomerTest {
         try {
         customer.setId(2);
         assertEquals(2, customer.getId());
+        System.out.println("CustomerId setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("CustomerId setters test succesfull");
+            System.out.println("CustomerId setters test failed: " + e.getMessage());
         }
     }
 
@@ -50,12 +48,11 @@ public class CustomerTest {
         try {
         customer.setFirstName("Jeremy");
         assertEquals("Jeremy", customer.getFirstName());
+        System.out.println("CustomerFirstName setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("CustomerFirstName setters test succesfull");
+            System.out.println("CustomerFirstName setter test failed: " + e.getMessage());
         }
     }
 
@@ -65,12 +62,11 @@ public class CustomerTest {
         try {
         customer.setLastName("Rentschler");
         assertEquals("Rentschler", customer.getLastName());
+        System.out.println("CustomerLastName setters test succesfull");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("CustomerLastName setters test succesfull");
+            System.out.println("CustomerLastName setters test failed: " + e.getMessage());
         }
     }
 }

@@ -30,10 +30,9 @@ public class DAOUserTest {
         }
         catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Test DAOUser find by id succesful: " + e.getMessage());
         }
-        finally {
-            System.out.println("Test DAOUser find by id succesful");
-        }
+
     }
 
     @Test
@@ -61,14 +60,13 @@ public class DAOUserTest {
             assertEquals(user.getLastName(), updatedUser.getLastName());
             assertEquals(user.getPassword(), updatedUser.getPassword());
             assertEquals(user.getToken(), updatedUser.getToken());
+
+            System.out.println("Test DAOUser update successful");
         }
         catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Test DAOUser update successful: " + e.getMessage());
         }
-        finally {
-            System.out.println("Test DAOUser update successful");
-        }
-
     }
 
     @Test
@@ -84,12 +82,11 @@ public class DAOUserTest {
             List<User> userList = daoUser.findAll();
             assertNotNull(userList);
             assertEquals(3, userList.size());
+            System.out.println("Test DAOUser find all successful");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOUser find all successful");
+            System.out.println("Test DAOUser find all failed: " + e.getMessage());
         }
     }
 
@@ -107,12 +104,11 @@ public class DAOUserTest {
             // Should return null
             User deletedUser = daoUser.findById(1);
             assertNull(deletedUser);
+            System.out.println("Test DAOUser delete successful");
         }
         catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            System.out.println("Test DAOUser delete successful");
+            System.out.println("Test DAOUser delete failed: " + e.getMessage());
         }
     }
 }
