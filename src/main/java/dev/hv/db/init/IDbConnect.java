@@ -2,7 +2,7 @@ package dev.hv.db.init;
 
 import org.jdbi.v3.core.Jdbi;
 
-
+// Ein Interface welches eine Schnittstelle für den Datenbankzugriff definiert
 public interface IDbConnect {
 
    /** create all tables */

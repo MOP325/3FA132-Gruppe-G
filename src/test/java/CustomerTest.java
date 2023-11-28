@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import dev.hv.db.model.Customer;
 
+// Tests für die Getter- und Setter-Funktionalitäten der Customer-Klasse
 public class CustomerTest {
     Customer customer;
 

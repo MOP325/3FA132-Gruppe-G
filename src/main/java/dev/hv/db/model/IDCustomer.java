@@ -1,5 +1,6 @@
 package dev.hv.db.model;
 
+// Das Interface IDCustomer definiert Methoden zur Strukturierung von Kundendaten in der Datenbank.
 public interface IDCustomer {
    int getId();
 
