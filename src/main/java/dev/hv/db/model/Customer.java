@@ -5,7 +5,7 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import lombok.NoArgsConstructor;
 
-// Klasse Customer zum verwalten von Kundendaten 
+// Class for managing customer data
 @NoArgsConstructor
 public class Customer implements IDCustomer {
     @ColumnName("c_Id")

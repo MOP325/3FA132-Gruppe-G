@@ -5,7 +5,7 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import lombok.NoArgsConstructor;
 
-// Klasse Reading zum verwalten von Lesedaten 
+// Class for managing reading data
 @NoArgsConstructor
 public class Reading implements IDReading {
     @ColumnName("r_Id")

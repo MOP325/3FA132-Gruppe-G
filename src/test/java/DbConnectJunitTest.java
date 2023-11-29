@@ -34,7 +34,7 @@ public class DbConnectJunitTest {
             handle.select("SELECT 1 FROM Reading");
             handle.select("SELECT 1 FROM Users");
 
-            System.out.println("DbConnectJunitTest create tables test completed.");
+            System.out.println("DbConnectJunitTest create tables test succcesfull.");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class DbConnectJunitTest {
         Jdbi jdbi = dbConnect.getJdbi();
         try (Handle handle = jdbi.open()) {
             assertEquals(0, handle.select("SELECT name FROM sqlite_master WHERE type='table' AND (name='Customers' OR name='Reading' OR name='Users');").mapTo(Boolean.class).list().size());
-            System.out.println("DbConnectJunitTest delete tables test completed.");
+            System.out.println("DbConnectJunitTest delete tables test succcesfull.");
         }
         catch(Exception e) {
                System.out.println("DbConnectJunitTest failed to remove all Tables: " + e.getMessage());

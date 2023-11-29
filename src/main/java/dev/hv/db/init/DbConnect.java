@@ -14,14 +14,17 @@ import java.io.InputStream;
 public class DbConnect implements IDbConnect {
     private Properties dbProperties = new Properties();
 
+    // Creating the tables
     private String createCustomers = "CREATE TABLE Customers (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR)";
     private String createReading = "CREATE TABLE Reading (Id INTEGER PRIMARY KEY AUTOINCREMENT,cId INTEGER, MeterId INTEGER, DateOfReading VARCHAR, KindOfMeter VARCHAR, MeterCount DOUBLE,Substitute INTEGER DEFAULT 0, Comment VARCHAR,FOREIGN KEY (cId) REFERENCES Customer(Id))";
     private String createUsers = "CREATE TABLE Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR, Password VARCHAR, Token VARCHAR)";
 
+    // Removing the tables
     private String dropCustomers = "DROP TABLE IF EXISTS Customers";
     private String dropReading = "DROP TABLE IF EXISTS Reading";
     private String dropUsers = "DROP TABLE IF EXISTS Users";
 
+    // Method to retrieve a Jdbi instance
     @Override
     public Jdbi getJdbi() {
         loadProperties();
@@ -29,6 +32,7 @@ public class DbConnect implements IDbConnect {
         return jdbi;
     }
     
+    // Loading configuration information
     private void loadProperties() {
     	try (InputStream input = new FileInputStream("src/config.txt"); ) {
         	dbProperties.load(input);
@@ -43,6 +47,7 @@ public class DbConnect implements IDbConnect {
         return Jdbi.create(uri, user, pw);
     }
 
+    // Method for creating all tables
     @Override
     public void createAllTables() {
 
@@ -65,6 +70,7 @@ public class DbConnect implements IDbConnect {
         }
     }
 
+    // Method for removing all tables
     @Override
     public void removeAllTables() {
 

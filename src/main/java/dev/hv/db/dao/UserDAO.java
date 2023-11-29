@@ -8,8 +8,8 @@ import dev.hv.db.model.User;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import java.util.List;
 
+// Interface for database access to the "users" table, defines methods for inserting, updating, querying, and deleting user data.
 public interface UserDAO {
-
     @SqlUpdate("INSERT INTO users (u_Firstname, u_LastName, u_Password, u_Token) VALUES (:firstName, :lastName, :password, :token)")
     void insert(@Bind("firstName") String firstName, @Bind("lastName") String lastName, @Bind("password") String password, @Bind("token") String token);
 

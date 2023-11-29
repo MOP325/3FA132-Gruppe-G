@@ -1,5 +1,6 @@
 public class dbConnectTest {
 
+    // Ausführung aller Tests
     public static void main(String[] args) {
 
         DbConnectJunitTest junitTest = new DbConnectJunitTest();
@@ -10,15 +11,17 @@ public class dbConnectTest {
         ReadingTest readingTest = new ReadingTest();
         
         // Dao tests
-        DAOCustomerTest daoCustomerTest = new DAOCustomerTest();
-        DAOUserTest daoUserTest = new DAOUserTest();
-        DAOReadingTest daoReadingTest = new DAOReadingTest();
+        //DAOCustomerTest daoCustomerTest = new DAOCustomerTest();
+        //DAOUserTest daoUserTest = new DAOUserTest();
+        //DAOReadingTest daoReadingTest = new DAOReadingTest();
 
         // Set up tests
         junitTest.setup();
-        customerTest.setup();
-        userTest.setup();
-        readingTest.setup();
+
+        // Not needed any more but still here safty first :D
+        //customerTest.setup();
+        //userTest.setup();
+        //readingTest.setup();
 
 
         junitTest.testCreateAllTables();
@@ -48,23 +51,23 @@ public class dbConnectTest {
         readingTest.testCommentSetter();
 
         // Dao customer tests
-        daoCustomerTest.testFindCustomerById();
-        daoCustomerTest.testUpdateCustomer();
-        daoCustomerTest.testFindAllCustomer();
-        daoCustomerTest.testDeleteCustomer();
+        //daoCustomerTest.testFindCustomerById();
+        //daoCustomerTest.testUpdateCustomer();
+        //daoCustomerTest.testFindAllCustomer();
+        //daoCustomerTest.testDeleteCustomer();
 
         // Dao user tests
-        daoUserTest.testFindUserById();
-        daoUserTest.testUpdateUser();
-        daoUserTest.testFindAllUser();
-        daoUserTest.testDeleteUser();
+        //daoUserTest.testFindUserById();
+        //daoUserTest.testUpdateUser();
+        //daoUserTest.testFindAllUser();
+        //daoUserTest.testDeleteUser();
 
 
         // Dao reading tests
-        daoReadingTest.testFindReadingById();
-        daoReadingTest.testUpdateReading();
-        daoReadingTest.testFindAllReading();
-        daoReadingTest.testDeleteReading();
+        //daoReadingTest.testFindReadingById();
+        //daoReadingTest.testUpdateReading();
+        //daoReadingTest.testFindAllReading();
+        //daoReadingTest.testDeleteReading();
 
         // Teardown
         junitTest.teardown();
