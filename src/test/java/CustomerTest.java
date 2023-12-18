@@ -5,72 +5,45 @@ import org.junit.jupiter.api.BeforeEach;
 
 import dev.hv.db.model.Customer;
 
+// Tests for the getter and setter functionalities of the Customer class
 public class CustomerTest {
-    Customer customer;
+    Customer customer = new Customer(1, "John", "Doe");;
 
     @BeforeEach
     public void setup() {
-        customer = new Customer(1, "John", "Doe");
+        this.customer = new Customer(1, "John", "Doe");
     }
 
     @Test
     public void testGetters() {
-        // Test getters
-        try {
         assertEquals(1, customer.getId());
         assertEquals("John", customer.getFirstName());
         assertEquals("Doe", customer.getLastName());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            System.out.println("Customer Getters test succesfull");
-        }
+    
+        System.out.println("Customer getters test succesfull");
     }
 
     @Test
     public void testCustomerIdSetter() {
-        // Test id setter
-        try {
         customer.setId(2);
         assertEquals(2, customer.getId());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            System.out.println("CustomerId setters test succesfull");
-        }
+    
+        System.out.println("CustomerId setters test succesfull");
     }
 
     @Test
     public void testCustomerFirstNameSetter() {
-        // Test setters
-        try {
         customer.setFirstName("Jeremy");
         assertEquals("Jeremy", customer.getFirstName());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            System.out.println("CustomerFirstName setters test succesfull");
-        }
+    
+        System.out.println("CustomerFirstName setters test succesfull");
     }
 
     @Test
     public void testCustomerLastNameSetter() {
-        // Test setters
-        try {
         customer.setLastName("Rentschler");
         assertEquals("Rentschler", customer.getLastName());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            System.out.println("CustomerLastName setters test succesfull");
-        }
+        
+        System.out.println("CustomerLastName setters test succesfull");
     }
 }

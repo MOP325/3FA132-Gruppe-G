@@ -5,6 +5,7 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import lombok.NoArgsConstructor;
 
+// Class for managing reading data
 @NoArgsConstructor
 public class Reading implements IDReading {
     @ColumnName("r_Id")
@@ -108,7 +109,4 @@ public class Reading implements IDReading {
     public void setComment(String comment) {
         this.Comment = comment;
     }
-
-
-
 }

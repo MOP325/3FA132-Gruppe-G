@@ -1,53 +1,76 @@
 public class dbConnectTest {
 
+    // Ausführung aller Tests
     public static void main(String[] args) {
 
-        DbConnectJunit testOne = new DbConnectJunit();
-        CustomerTest testTwo = new CustomerTest();
-        UserTest testThree = new UserTest();
+        DbConnectJunitTest junitTest = new DbConnectJunitTest();
 
-        testOne.setup();
-        testTwo.setup();
-        testThree.setup();
-
-        testOne.testCreateAllTables();
+        // Getter / Setter tests
+        CustomerTest customerTest = new CustomerTest();
+        UserTest userTest = new UserTest();
+        ReadingTest readingTest = new ReadingTest();
         
-        testTwo.testGetters();
-        testTwo.testCustomerIdSetter();
-        testTwo.testCustomerFirstNameSetter();
-        testTwo.testCustomerLastNameSetter();
+        // Dao tests
+        //DAOCustomerTest daoCustomerTest = new DAOCustomerTest();
+        //DAOUserTest daoUserTest = new DAOUserTest();
+        //DAOReadingTest daoReadingTest = new DAOReadingTest();
+
+        // Set up tests
+        junitTest.setup();
+
+        // Not needed any more but still here safty first :D
+        //customerTest.setup();
+        //userTest.setup();
+        //readingTest.setup();
+
+
+        junitTest.testCreateAllTables();
         
-        testThree.testGetters();
-        testThree.testUserIdSetter();
-        testThree.testUserFirstNameSetter();
-        testThree.testUserLastNameSetter();
-        testThree.testUserPasswordSetter();
-        testThree.testUserTokenSetter();
+        // Customer tests
+        customerTest.testGetters();
+        customerTest.testCustomerIdSetter();
+        customerTest.testCustomerFirstNameSetter();
+        customerTest.testCustomerLastNameSetter();
+        
+        // User tests
+        userTest.testGetters();
+        userTest.testUserIdSetter();
+        userTest.testUserFirstNameSetter();
+        userTest.testUserLastNameSetter();
+        userTest.testUserPasswordSetter();
+        userTest.testUserTokenSetter();
 
-        testOne.teardown();
-        testOne.testRemoveAllTables();
+        // Reading tests
+        readingTest.testReadingGetters();
+        readingTest.testReadingIdSetter();
+        readingTest.testReadingcIdSetter();
+        readingTest.testReadingMeterIdSetter();
+        readingTest.testreadingKindOfMeterSetter();
+        readingTest.testMeterCountSetter();
+        readingTest.testSubstituteSetter();
+        readingTest.testCommentSetter();
 
-        // String sql = "SELECT Id, FirstName, LastName FROM Customer";
+        // Dao customer tests
+        //daoCustomerTest.testFindCustomerById();
+        //daoCustomerTest.testUpdateCustomer();
+        //daoCustomerTest.testFindAllCustomer();
+        //daoCustomerTest.testDeleteCustomer();
 
-        // DbConnect dbConnect = new DbConnect();
-        // dbConnect.dBConnect("jdbc:sqlite:/Users/eliasdellingshausen/desktop/Hausverwaltung.db",
-        // "root", "root");
+        // Dao user tests
+        //daoUserTest.testFindUserById();
+        //daoUserTest.testUpdateUser();
+        //daoUserTest.testFindAllUser();
+        //daoUserTest.testDeleteUser();
 
-        // Handle handle = dbConnect.getJdbi().open();
 
-        // List<Customer> customers = handle.createQuery(sql).mapToBean(Customer.class)
-        // .list();
+        // Dao reading tests
+        //daoReadingTest.testFindReadingById();
+        //daoReadingTest.testUpdateReading();
+        //daoReadingTest.testFindAllReading();
+        //daoReadingTest.testDeleteReading();
 
-        // handle.close();
-
-        // for (Customer customer : customers) {
-        // // Access and process customer data
-        // System.out.println("ID: " + customer.getId() + ", FirstName: " +
-        // customer.getFirstName() + ", LastName: "
-        // + customer.getLastName());
-        // }
-
+        // Teardown
+        junitTest.teardown();
+        junitTest.testRemoveAllTables();
     }
 }
-
-// org.jdbi.v3.core.statement.UnableToCreateStatementException: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (table Users already exists) [statement:"CREATE TABLE Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR, Password VARCHAR, Token VARCHAR)", arguments:{positional:{}, named:{}, finder:[]}

@@ -1,5 +1,6 @@
 package dev.hv.db.model;
 
+// The interface defines methods for structuring reading data in the database.
 public interface IDReading {
    int getId();
 
