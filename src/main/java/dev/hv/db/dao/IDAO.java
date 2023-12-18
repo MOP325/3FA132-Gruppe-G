@@ -2,6 +2,7 @@ package dev.hv.db.dao;
 
 import java.util.List;
 
+// Generic interface defining Create, Read, Update, Delete for a data access object (DAO).
 public interface IDAO<T> {
 
    // DELETE

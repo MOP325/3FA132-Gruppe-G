@@ -11,7 +11,6 @@ public class DAOReading {
     private Jdbi jdbi;
 
     public DAOReading() {
-        // Initialize JDBI (usually done once and passed as a dependency)
         jdbi = Jdbi.create("jdbc:your_database_url", "username", "password");
     }
 

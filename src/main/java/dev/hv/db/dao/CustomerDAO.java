@@ -8,6 +8,7 @@ import dev.hv.db.model.Customer;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import java.util.List;
 
+// Interface for database access to the "customer" table, defines methods for inserting, updating, querying, and deleting user data.
 public interface CustomerDAO {
 
     @SqlUpdate("INSERT INTO customers (c_FirstName, c_LastName) VALUES (:firstName, :lastName)")
