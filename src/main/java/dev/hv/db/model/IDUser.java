@@ -1,5 +1,6 @@
 package dev.hv.db.model;
 
+// The interface defines methods for structuring user data in the database.
 public interface IDUser {
    int getId();
 

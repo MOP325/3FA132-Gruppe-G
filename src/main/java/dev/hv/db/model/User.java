@@ -5,6 +5,7 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 import lombok.NoArgsConstructor;
 
+// Class for managing user data
 @NoArgsConstructor
 public class User implements IDUser {
     @ColumnName("u_Id")

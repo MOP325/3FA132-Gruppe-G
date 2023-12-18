@@ -2,7 +2,7 @@ package dev.hv.db.init;
 
 import org.jdbi.v3.core.Jdbi;
 
-
+// An interface defining a gateway for database access
 public interface IDbConnect {
 
    /** create all tables */

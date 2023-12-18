@@ -8,6 +8,7 @@ import dev.hv.db.model.Reading;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import java.util.List;
 
+// Interface for database access to the "reading" table, defines methods for inserting, updating, querying, and deleting user data.
 public interface ReadingDAO {
 
     @SqlUpdate("INSERT INTO readings (r_cId, r_MeterId, r_KindOfMeter, r_MeterCount, r_Substitute, r_Comment) VALUES (:cId, :meterId, :kindOfMeter, :meterCount, :substitute, :comment)")
