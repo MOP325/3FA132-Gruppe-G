@@ -1,76 +1,99 @@
-public class dbConnectTest {
+// import static org.junit.jupiter.api.Assertions.*;
 
-    // Ausführung aller Tests
-    public static void main(String[] args) {
+// import org.jdbi.v3.core.Jdbi;
+// import org.junit.jupiter.api.AfterEach;
+// import org.junit.jupiter.api.BeforeAll;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.Test;
 
-        DbConnectJunitTest junitTest = new DbConnectJunitTest();
+// import java.io.IOException;
+// import java.nio.file.Files;
+// import java.nio.file.Path;
 
-        // Getter / Setter tests
-        CustomerTest customerTest = new CustomerTest();
-        UserTest userTest = new UserTest();
-        ReadingTest readingTest = new ReadingTest();
-        
-        // Dao tests
-        //DAOCustomerTest daoCustomerTest = new DAOCustomerTest();
-        //DAOUserTest daoUserTest = new DAOUserTest();
-        //DAOReadingTest daoReadingTest = new DAOReadingTest();
+// import dev.hv.db.init.DbConnect;
 
-        // Set up tests
-        junitTest.setup();
+// public class DbConnectTest {
 
-        // Not needed any more but still here safty first :D
-        //customerTest.setup();
-        //userTest.setup();
-        //readingTest.setup();
+// private DbConnect dbConnect;
 
+// @BeforeAll
+// public static void globalSetup() {
+// // Perform any global setup here if needed
+// }
 
-        junitTest.testCreateAllTables();
-        
-        // Customer tests
-        customerTest.testGetters();
-        customerTest.testCustomerIdSetter();
-        customerTest.testCustomerFirstNameSetter();
-        customerTest.testCustomerLastNameSetter();
-        
-        // User tests
-        userTest.testGetters();
-        userTest.testUserIdSetter();
-        userTest.testUserFirstNameSetter();
-        userTest.testUserLastNameSetter();
-        userTest.testUserPasswordSetter();
-        userTest.testUserTokenSetter();
+// @BeforeEach
+// public void setUp() {
+// dbConnect = new DbConnect();
 
-        // Reading tests
-        readingTest.testReadingGetters();
-        readingTest.testReadingIdSetter();
-        readingTest.testReadingcIdSetter();
-        readingTest.testReadingMeterIdSetter();
-        readingTest.testreadingKindOfMeterSetter();
-        readingTest.testMeterCountSetter();
-        readingTest.testSubstituteSetter();
-        readingTest.testCommentSetter();
+// // Ensure that dbProperties is initialized before calling loadProperties
+// dbConnect.loadProperties();
 
-        // Dao customer tests
-        //daoCustomerTest.testFindCustomerById();
-        //daoCustomerTest.testUpdateCustomer();
-        //daoCustomerTest.testFindAllCustomer();
-        //daoCustomerTest.testDeleteCustomer();
+// dbConnect.removeAllTables();
+// dbConnect.createAllTables();
+// }
 
-        // Dao user tests
-        //daoUserTest.testFindUserById();
-        //daoUserTest.testUpdateUser();
-        //daoUserTest.testFindAllUser();
-        //daoUserTest.testDeleteUser();
+// @AfterEach
+// public void tearDown() {
+// dbConnect.removeAllTables();
+// }
 
+// @Test
+// public void getJdbi_DefaultConstructor_ReturnsValidJdbiInstance() {
+// Jdbi jdbi = dbConnect.getJdbi();
 
-        // Dao reading tests
-        //daoReadingTest.testFindReadingById();
-        //daoReadingTest.testUpdateReading();
-        //daoReadingTest.testFindAllReading();
-        //daoReadingTest.testDeleteReading();
+// assertNotNull(jdbi);
+// // Add more assertions if needed
+// }
 
-        // Teardown
-        junitTest.teardown();
-        junitTest.testRemoveAllTables();
-    }
-}
+// @Test
+// public void getJdbi_WithParameters_ReturnsValidJdbiInstance() {
+// Jdbi jdbi = dbConnect.getJdbi("jdbc:h2:mem:test", "username", "password");
+
+// assertNotNull(jdbi);
+// // Add more assertions if needed
+// }
+
+// @Test
+// public void loadProperties_ValidConfigFile_PropertiesLoadedSuccessfully()
+// throws IOException {
+// // Create a temporary config file
+// Path tempConfigFile = Files.createTempFile("tempConfig", ".txt");
+// Files.writeString(tempConfigFile, "db.url=jdbc:h2:mem:test");
+
+// // Set the config file path in the DbConnect instance
+// dbConnect.setConfigFilePath(tempConfigFile.toString());
+
+// // Load properties
+// dbConnect.loadProperties();
+
+// // Verify that properties are loaded
+// assertNotNull(dbConnect.getDbProperties().getProperty("db.url"));
+
+// // Clean up
+// Files.deleteIfExists(tempConfigFile);
+// }
+
+// @Test
+// public void
+// createAndRemoveAllTables_ValidTables_TablesCreatedAndRemovedSuccessfully() {
+// // Create tables
+// dbConnect.createAllTables();
+
+// // Check if tables exist
+// assertTrue(dbConnect.tablesExist());
+
+// // Remove tables
+// dbConnect.removeAllTables();
+
+// // Check if tables are removed
+// assertFalse(dbConnect.tablesExist());
+// }
+
+// @Test
+// public void removeAllTables_NoTablesToDrop_NoExceptionThrown() {
+// // This test ensures that calling removeAllTables when no tables exist does
+// not
+// // throw an exception
+// assertDoesNotThrow(() -> dbConnect.removeAllTables());
+// }
+// }

@@ -10,7 +10,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 public class DbConnect implements IDbConnect {
     private Properties dbProperties = new Properties();
 
@@ -28,18 +27,7 @@ public class DbConnect implements IDbConnect {
     @Override
     public Jdbi getJdbi() {
         loadProperties();
-        Jdbi jdbi = Jdbi.create(dbProperties.getProperty("db.url"));
-        return jdbi;
-    }
-    
-    // Loading configuration information
-    private void loadProperties() {
-    	try (InputStream input = new FileInputStream("src/config.txt"); ) {
-        	dbProperties.load(input);
-    	} catch (IOException ex) {
-    		ex.printStackTrace();
-    	}
-
+        return Jdbi.create(dbProperties.getProperty("db.url"));
     }
 
     @Override
@@ -52,7 +40,7 @@ public class DbConnect implements IDbConnect {
     public void createAllTables() {
 
         Handle handle = getJdbi().open();
-        
+
         try {
             handle.begin();
 
@@ -75,17 +63,56 @@ public class DbConnect implements IDbConnect {
     public void removeAllTables() {
 
         Handle handle = getJdbi().open();
-        
+
         try {
             handle.createUpdate(dropCustomers).execute();
             handle.createUpdate(dropReading).execute();
             handle.createUpdate(dropUsers).execute();
-            
+
             System.out.println("Tables removed successfully.");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             handle.close();
+        }
+    }
+
+    // Loading configuration information
+    public void loadProperties() {
+        try (InputStream input = new FileInputStream("src/config.txt");) {
+            dbProperties.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private String configFilePath;
+
+    public void setConfigFilePath(String configFilePath) {
+        this.configFilePath = configFilePath;
+    }
+
+    public Properties getDbProperties() {
+        return dbProperties;
+    }
+
+    public boolean tablesExist() {
+        Jdbi jdbi = getJdbi();
+        try (Handle handle = jdbi.open()) {
+            // Modify the queries based on your database type and structure
+            boolean customersTableExists = handle.createQuery("SELECT COUNT(*) FROM Customers")
+                    .mapTo(Integer.class)
+                    .one() > 0;
+
+            boolean readingTableExists = handle.createQuery("SELECT COUNT(*) FROM Reading")
+                    .mapTo(Integer.class)
+                    .one() > 0;
+
+            boolean usersTableExists = handle.createQuery("SELECT COUNT(*) FROM Users")
+                    .mapTo(Integer.class)
+                    .one() > 0;
+
+            return customersTableExists && readingTableExists && usersTableExists;
         }
     }
 }
