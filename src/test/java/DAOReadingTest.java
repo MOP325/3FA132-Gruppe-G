@@ -6,7 +6,7 @@ import org.junit.Test;
 import dev.hv.db.dao.DAOReading;
 import dev.hv.db.model.Reading;
 import java.util.List;
-
+ 
 public class DAOReadingTest {
     private DAOReading daoReading = new DAOReading();
 
@@ -92,4 +92,4 @@ public class DAOReadingTest {
         assertNull(deletedReading);
         
         System.out.println("Test DAOReading delete successful");
-}
+    }
