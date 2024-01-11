@@ -1,6 +1,7 @@
 package dev.hv.db.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import dev.hv.db.model.Reading;
 
@@ -15,13 +16,17 @@ public class DAOReading {
     }
 
     public void insert(Reading reading) {
-        jdbi.useExtension(ReadingDAO.class, dao -> dao.insert(reading.getcId(), reading.getMeterId(),
-                reading.getKindOfMeter(), reading.getMeterCount(), reading.getSubstitute(), reading.getComment()));
+        jdbi.useExtension(ReadingDAO.class,
+                dao -> dao.insert(reading.getcId(), reading.getMeterId(), reading.getDateOfReading(),
+                        reading.getKindOfMeter(), reading.getMeterCount(), reading.getSubstitute(),
+                        reading.getComment()));
     }
 
     public void update(Reading reading) {
-        jdbi.useExtension(ReadingDAO.class, dao -> dao.update(reading.getId(), reading.getcId(), reading.getMeterId(),
-                reading.getKindOfMeter(), reading.getMeterCount(), reading.getSubstitute(), reading.getComment()));
+        jdbi.useExtension(ReadingDAO.class,
+                dao -> dao.update(reading.getId(), reading.getcId(), reading.getMeterId(), reading.getDateOfReading(),
+                        reading.getKindOfMeter(), reading.getMeterCount(), reading.getSubstitute(),
+                        reading.getComment()));
     }
 
     public Reading findById(int id) {
