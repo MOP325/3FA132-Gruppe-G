@@ -11,7 +11,7 @@ public class ReadingTest {
 
     @BeforeEach
     public void setup() {
-        this.reading = new Reading(1, 1, 1, "TestKindOfMeter", 1.1, 1, "TestComment");
+        this.reading = new Reading(1, 1, 1, 1, "TestKindOfMeter", 1.1, 1, "TestComment");
     }
 
     @Test
@@ -19,6 +19,7 @@ public class ReadingTest {
         assertEquals(1, reading.getId());
         assertEquals(1, reading.getcId());
         assertEquals(1, reading.getMeterId());
+        assertEquals(1, reading.getDateOfReading());
         assertEquals("TestKindOfMeter", reading.getKindOfMeter());
         assertEquals(1.1, reading.getMeterCount(), 0.0001);
         assertEquals(1, reading.getSubstitute());
@@ -53,6 +54,18 @@ public class ReadingTest {
     public void testMeterCountSetter() {
         reading.setMeterCount(4.1);
         assertEquals(4.1, reading.getMeterCount(), 0.0001);
+    }
+
+    @Test
+    public void testDateOfReadingSetter() {
+        reading.setDateOfReading(2022);
+        assertEquals(2022, reading.getDateOfReading());
+    }
+
+    @Test
+    void testPrintDateOfReading() {
+        reading.setDateOfReading(2022);
+        assertEquals("date of reading: 2022", reading.printDateOfReading());
     }
 
     @Test

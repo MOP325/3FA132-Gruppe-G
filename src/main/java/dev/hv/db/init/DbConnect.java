@@ -1,6 +1,7 @@
 package dev.hv.db.init;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 import java.util.Properties;
 
@@ -15,24 +16,32 @@ public class DbConnect implements IDbConnect {
 
     // Creating the tables
     private String createCustomers = "CREATE TABLE Customers (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR)";
-    private String createReading = "CREATE TABLE Reading (Id INTEGER PRIMARY KEY AUTOINCREMENT,cId INTEGER, MeterId INTEGER, DateOfReading VARCHAR, KindOfMeter VARCHAR, MeterCount DOUBLE,Substitute INTEGER DEFAULT 0, Comment VARCHAR,FOREIGN KEY (cId) REFERENCES Customer(Id))";
+    private String createReadings = "CREATE TABLE Readings (Id INTEGER PRIMARY KEY AUTOINCREMENT,cId INTEGER, MeterId INTEGER, DateOfReading INTEGER, KindOfMeter VARCHAR, MeterCount DOUBLE,Substitute INTEGER DEFAULT 0, Comment VARCHAR,FOREIGN KEY (cId) REFERENCES Customer(Id))";
     private String createUsers = "CREATE TABLE Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR, Password VARCHAR, Token VARCHAR)";
 
     // Removing the tables
     private String dropCustomers = "DROP TABLE IF EXISTS Customers";
-    private String dropReading = "DROP TABLE IF EXISTS Reading";
+    private String dropReadings = "DROP TABLE IF EXISTS Readings";
     private String dropUsers = "DROP TABLE IF EXISTS Users";
 
     // Method to retrieve a Jdbi instance
     @Override
     public Jdbi getJdbi() {
         loadProperties();
-        return Jdbi.create(dbProperties.getProperty("db.url"));
+        Jdbi jdbi = Jdbi.create(dbProperties.getProperty("db.url"));
+        installSqlObjectPlugin(jdbi);
+        return jdbi;
     }
 
     @Override
     public Jdbi getJdbi(String uri, String user, String pw) {
-        return Jdbi.create(uri, user, pw);
+        Jdbi jdbi = Jdbi.create(uri, user, pw);
+        installSqlObjectPlugin(jdbi);
+        return jdbi;
+    }
+
+    private void installSqlObjectPlugin(Jdbi jdbi) {
+        jdbi.installPlugin(new SqlObjectPlugin());
     }
 
     // Method for creating all tables
@@ -45,7 +54,7 @@ public class DbConnect implements IDbConnect {
             handle.begin();
 
             handle.createUpdate(createCustomers).execute();
-            handle.createUpdate(createReading).execute();
+            handle.createUpdate(createReadings).execute();
             handle.createUpdate(createUsers).execute();
 
             handle.commit();
@@ -66,7 +75,7 @@ public class DbConnect implements IDbConnect {
 
         try {
             handle.createUpdate(dropCustomers).execute();
-            handle.createUpdate(dropReading).execute();
+            handle.createUpdate(dropReadings).execute();
             handle.createUpdate(dropUsers).execute();
 
             System.out.println("Tables removed successfully.");
