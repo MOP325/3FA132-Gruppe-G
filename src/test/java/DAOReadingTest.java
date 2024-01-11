@@ -67,7 +67,7 @@ public class DAOReadingTest {
         // Insert three reading
         daoReading.insert(new Reading(1, 1, 2, "KindOfMeter", 2.2, 2, "Comment"));
         daoReading.insert(new Reading(2, 2, 2, "KindOfMeter", 2.2, 2, "Comment"));
-        daoReading.insert(new Reading(2, 2, 2, "KindOfMeter", 2.2, 2, "Comment"))
+        daoReading.insert(new Reading(2, 2, 2, "KindOfMeter", 2.2, 2, "Comment"));
         
         // Count readings
         List<Reading> readingList = daoReading.findAll();
@@ -93,3 +93,4 @@ public class DAOReadingTest {
         
         System.out.println("Test DAOReading delete successful");
     }
+}

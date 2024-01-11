@@ -8,7 +8,7 @@ import com.sun.net.httpserver.HttpServer;
 public class StartServer {
 
     public static void main(final String[] args) {
-        final String pack = "dev.bsinfo.rest.ressource";
+        final String pack = "dev.hv.rest.model";
         String url = "http://localhost:8080/rest";
         System.out.println("Start server");
         System.out.println(url);

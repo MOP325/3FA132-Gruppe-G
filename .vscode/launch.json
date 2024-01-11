@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "StartServer",
+      "request": "launch",
+      "mainClass": "dev.hv.rest.util.StartServer",
+      "projectName": "Hausverwaltung0"
+    },
+    {
+      "type": "java",
       "name": "dbConnectTest",
       "request": "launch",
       "mainClass": "dbConnectTest",
