@@ -1,16 +1,19 @@
 package dev.hv.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public interface IRCustomer {
+    
+    String getFirstName();
 
-   String getFirstname();
+    int getCustomerID();
 
-   Integer getId();
+    String getLastName();
 
-   String getLastname();
+    void setFirstName(String firstName);
 
-   void setFirstname(String firstName);
+    void setCustomerID(int id);
 
-   void setId(Integer id);
-
-   void setLastname(String lastName);
+    void setLastName(String lastName);
 }

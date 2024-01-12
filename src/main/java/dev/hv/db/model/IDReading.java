@@ -36,3 +36,4 @@ public interface IDReading {
 
    void setComment(String comment);
 }
+   
