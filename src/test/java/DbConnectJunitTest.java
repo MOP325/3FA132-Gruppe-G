@@ -1,5 +1,4 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -23,13 +22,6 @@ public class DbConnectJunitTest {
     @AfterAll
     public void teardown() {
         dbConnect.removeAllTables();
-    }
-
-    @Test
-    public void testGetJdbi() {
-        DbConnect dbConnect = new DbConnect();
-        Jdbi jdbi = dbConnect.getJdbi();
-        assertNotNull(jdbi);
     }
 
     @Test

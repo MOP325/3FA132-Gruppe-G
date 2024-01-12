@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="main/java"/>
-	<classpathentry kind="src" path="test/java"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con"
+		path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry kind="src" path="main/java" />
+	<classpathentry kind="src" path="test/java" />
+	<classpathentry kind="output" path="bin" />
 	// For Rest Server
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-    <classpathentry kind="src" path="main/java"/>
-    <classpathentry kind="src" path="test/java"/>
-    <classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con"
+		path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry kind="src" path="main/java" />
+	<classpathentry kind="src" path="test/java" />
+	<classpathentry kind="output" path="bin" />
 </classpath>

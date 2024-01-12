@@ -1,4 +1,5 @@
 package dev.hv.db.model;
+
 import java.beans.ConstructorProperties;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
@@ -17,7 +18,7 @@ public class Customer implements IDCustomer {
     @ColumnName("c_LastName")
     private String LastName;
 
-    @ConstructorProperties({"c_Id", "c_FirstName", "c_LastName"})
+    @ConstructorProperties({ "c_Id", "c_FirstName", "c_LastName" })
     public Customer(int Id, String FirstName, String LastName) {
         this.Id = Id;
         this.FirstName = FirstName;
