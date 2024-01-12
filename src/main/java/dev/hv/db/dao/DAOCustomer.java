@@ -1,4 +1,5 @@
 package dev.hv.db.dao;
+
 import org.jdbi.v3.core.Jdbi;
 
 import dev.hv.db.model.Customer;
@@ -18,7 +19,8 @@ public class DAOCustomer {
     }
 
     public void update(Customer customer) {
-        jdbi.useExtension(CustomerDAO.class, dao -> dao.update(customer.getId(), customer.getFirstName(), customer.getLastName()));
+        jdbi.useExtension(CustomerDAO.class,
+                dao -> dao.update(customer.getId(), customer.getFirstName(), customer.getLastName()));
     }
 
     public Customer findById(int id) {
