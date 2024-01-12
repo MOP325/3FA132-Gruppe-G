@@ -24,7 +24,7 @@ public class User implements IDUser {
     private String Token;
 
     // Id gets genereated automaticly
-    @ConstructorProperties({"u_Id", "u_FirstName", "u_LastName", "u_Password", "u_Token"})
+    @ConstructorProperties({"Id", "FirstName", "LastName", "Password", "Token"})
     public User(int Id, String FirstName, String LastName, String Password, String Token) {
         this.Id = Id;
         this.FirstName = FirstName;
@@ -32,6 +32,7 @@ public class User implements IDUser {
         this.Password = Password;
         this.Token = Token;
     }
+    
 
     @Override
     public int getId() {

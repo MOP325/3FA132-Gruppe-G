@@ -4,24 +4,24 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public interface IRUser {
+    
+    String getFirstName();
 
-   String getFirstname();
+    int getUserID();
+     
+    String getLastName();
 
-   Integer getId();
+    String getPassword();
 
-   String getLastname();
+    String getToken();
 
-   String getPassword();
+    void setFirstName(String firstName);
 
-   String getToken();
+    void setUserID(int id);
 
-   void setFirstname(String firstName);
+    void setLastName(String lastName);
 
-   void setId(Integer id);
+    void setPassword(String password);
 
-   void setLastname(String lastName);
-
-   void setPassword(String password);
-
-   void setToken(String token);
+    void setToken(String token);
 }
