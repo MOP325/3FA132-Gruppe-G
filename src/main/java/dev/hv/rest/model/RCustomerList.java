@@ -1,9 +1,7 @@
-package dev.hv.rest.lists;
+package dev.hv.rest.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import dev.hv.rest.model.IRCustomer;
-import dev.hv.rest.model.RCustomer;
 
 public class RCustomerList extends ArrayList<IRCustomer> {
 

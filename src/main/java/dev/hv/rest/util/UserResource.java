@@ -1,4 +1,4 @@
-package dev.hv.rest.modelTest;
+package dev.hv.rest.util;
 
 import dev.hv.db.dao.UserDAO;
 import dev.hv.db.model.User;

@@ -1,39 +1,36 @@
 package dev.hv.rest.model;
 
+import java.sql.Date;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public interface IRReading {
+    
+    String getComment();
 
-   String getComment();
+    IRCustomer getCustomer();
 
-   IRCustomer getCustomer();
+    Date getDateOfReading();
 
-   Long getDateofreading();
+    String getKindOfMeter();
 
-   Integer getId();
+    double getMeterCount();
 
-   String getKindofmeter();
+    int getMeterID();
 
-   Double getMetercount();
+    String printDateofreading();
 
-   String getMeterid();
+    void setComment(String comment);
 
-   Boolean getSubstitute();
+    void setCustomer(IRCustomer customer);
 
-   String printDateofreading();
+    void setDateOfReading(Date dateOfReading);
 
-   void setComment(String comment);
+    void setKindOfMeter(String kindOfMeter);
 
-   void setCustomer(IRCustomer customer);
+    void setMeterCount(double meterCount);
 
-   void setDateofreading(Long dateOfReading);
-
-   void setId(Integer id);
-
-   void setKindofmeter(String kindOfMeter);
-
-   void setMetercount(Double meterCount);
-
-   void setMeterid(String meterId);
-
-   void setSubstitute(Boolean substitute);
+    void setMeterID(int meterId);
 
 }
