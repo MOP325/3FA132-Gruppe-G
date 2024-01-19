@@ -22,7 +22,7 @@ public class ReadingResource {
         readingDAO.insert(
                 reading.getcId(),
                 reading.getMeterId(),
-                reading.getKindOfMeter(),
+                0, reading.getKindOfMeter(),
                 reading.getMeterCount(),
                 reading.getSubstitute(),
                 reading.getComment()
@@ -37,7 +37,7 @@ public class ReadingResource {
                 id,
                 reading.getcId(),
                 reading.getMeterId(),
-                reading.getKindOfMeter(),
+                id, reading.getKindOfMeter(),
                 reading.getMeterCount(),
                 reading.getSubstitute(),
                 reading.getComment()

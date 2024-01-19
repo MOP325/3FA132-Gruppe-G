@@ -47,12 +47,48 @@ public class RReading implements IRCustomer {
     @JsonProperty
     private IRCustomer customer;
 
+    // @Override
+    // public String printDateofreading() {
+    //     if (DateOfReading == null) {
+    //         return "No Date Available";
+    //     }
+    //     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    //     return formatter.format(DateOfReading);
+    // }
+
     @Override
-    public String printDateofreading() {
-        if (DateOfReading == null) {
-            return "No Date Available";
-        }
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        return formatter.format(DateOfReading);
+    public String getFirstName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getFirstName'");
+    }
+
+    @Override
+    public int getCustomerID() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCustomerID'");
+    }
+
+    @Override
+    public String getLastName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLastName'");
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setFirstName'");
+    }
+
+    @Override
+    public void setCustomerID(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCustomerID'");
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setLastName'");
     }
 }

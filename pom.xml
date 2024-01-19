@@ -129,12 +129,18 @@
 			<version>2.34</version>
 		</dependency>
 
-		<!-- Jersey Media JSON Jackson -->
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>2.34</version>
-		</dependency>
+    <!-- Jersey Media JSON Jackson -->
+    <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-jackson</artifactId>
+        <version>2.34</version>
+    </dependency>
+ 
+   <dependency>
+     <groupId>org.glassfish.jersey.containers</groupId>
+     <artifactId>jersey-container-jdk-http</artifactId>
+     <version>2.41</version>
+   </dependency>
 
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
