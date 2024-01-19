@@ -16,7 +16,7 @@ public class DbConnect implements IDbConnect {
 
     // Creating the tables
     private String createCustomers = "CREATE TABLE Customers (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR)";
-    private String createReadings = "CREATE TABLE Readings (Id INTEGER PRIMARY KEY AUTOINCREMENT,cId INTEGER, MeterId INTEGER, DateOfReading INTEGER, KindOfMeter VARCHAR, MeterCount DOUBLE,Substitute INTEGER DEFAULT 0, Comment VARCHAR,FOREIGN KEY (cId) REFERENCES Customer(Id))";
+    private String createReadings = "CREATE TABLE Readings (Id INTEGER PRIMARY KEY AUTOINCREMENT,cId INTEGER, MeterId INTEGER, DateOfReading INTEGER, KindOfMeter VARCHAR, MeterCount DOUBLE,Substitute INTEGER DEFAULT 0, Comment VARCHAR,FOREIGN KEY (cId) REFERENCES Customers(Id))";
     private String createUsers = "CREATE TABLE Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName VARCHAR, LastName VARCHAR, Password VARCHAR, Token VARCHAR)";
 
     // Removing the tables
@@ -40,7 +40,7 @@ public class DbConnect implements IDbConnect {
         return jdbi;
     }
 
-    private void installSqlObjectPlugin(Jdbi jdbi) {
+    public void installSqlObjectPlugin(Jdbi jdbi) {
         jdbi.installPlugin(new SqlObjectPlugin());
     }
 
@@ -106,22 +106,30 @@ public class DbConnect implements IDbConnect {
     }
 
     public boolean tablesExist() {
+        boolean customersTableExists = false;
+        boolean readingTableExists = false;
+        boolean usersTableExists = false;
+
         Jdbi jdbi = getJdbi();
         try (Handle handle = jdbi.open()) {
             // Modify the queries based on your database type and structure
-            boolean customersTableExists = handle.createQuery("SELECT COUNT(*) FROM Customers")
+            customersTableExists = handle.createQuery("SELECT COUNT(*) FROM Customers")
                     .mapTo(Integer.class)
                     .one() > 0;
 
-            boolean readingTableExists = handle.createQuery("SELECT COUNT(*) FROM Reading")
+            readingTableExists = handle.createQuery("SELECT COUNT(*) FROM Readings")
                     .mapTo(Integer.class)
                     .one() > 0;
 
-            boolean usersTableExists = handle.createQuery("SELECT COUNT(*) FROM Users")
+            usersTableExists = handle.createQuery("SELECT COUNT(*) FROM Users")
                     .mapTo(Integer.class)
                     .one() > 0;
 
-            return customersTableExists && readingTableExists && usersTableExists;
+            System.out.println(customersTableExists && readingTableExists && usersTableExists);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return customersTableExists && readingTableExists && usersTableExists;
     }
 }

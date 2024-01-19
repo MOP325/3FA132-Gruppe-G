@@ -1,99 +1,148 @@
-// import static org.junit.jupiter.api.Assertions.*;
-
+// import org.jdbi.v3.core.Handle;
 // import org.jdbi.v3.core.Jdbi;
+// import org.jdbi.v3.core.statement.Query;
+// import org.jdbi.v3.core.statement.Update;
 // import org.junit.jupiter.api.AfterEach;
-// import org.junit.jupiter.api.BeforeAll;
 // import org.junit.jupiter.api.BeforeEach;
 // import org.junit.jupiter.api.Test;
 
-// import java.io.IOException;
-// import java.nio.file.Files;
-// import java.nio.file.Path;
-
 // import dev.hv.db.init.DbConnect;
 
-// public class DbConnectTest {
+// import java.io.ByteArrayInputStream;
+// import java.io.InputStream;
+// import java.sql.SQLException;
+// import java.util.List;
+// import java.util.Properties;
 
-// private DbConnect dbConnect;
+// import static org.junit.jupiter.api.Assertions.*;
 
-// @BeforeAll
-// public static void globalSetup() {
-// // Perform any global setup here if needed
-// }
+// class DbConnectTest {
 
-// @BeforeEach
-// public void setUp() {
-// dbConnect = new DbConnect();
+//     private DbConnect dbConnect;
 
-// // Ensure that dbProperties is initialized before calling loadProperties
-// dbConnect.loadProperties();
+//     @BeforeEach
+//     void setUp() {
+//         dbConnect = new DbConnect();
+//     }
 
-// dbConnect.removeAllTables();
-// dbConnect.createAllTables();
-// }
+//     // @Test
+//     // void testGetJdbi() {
+//     // // Testing getJdbi() method with default properties
+//     // Jdbi resultJdbi = dbConnect.getJdbi();
 
-// @AfterEach
-// public void tearDown() {
-// dbConnect.removeAllTables();
-// }
+//     // assertNotNull(resultJdbi);
+//     // }
 
-// @Test
-// public void getJdbi_DefaultConstructor_ReturnsValidJdbiInstance() {
-// Jdbi jdbi = dbConnect.getJdbi();
+//     @AfterEach
+//     void cleanup() {
+//         // Remove all data from the customers table after each test
+//         new DbConnect().removeAllTables();
+//     }
 
-// assertNotNull(jdbi);
-// // Add more assertions if needed
-// }
+//     @Test
+//     void testGetJdbiWithCredentials() {
+//         // Testing getJdbi() method with custom URI, user, and password
+//         Jdbi resultJdbi = dbConnect.getJdbi("jdbc:sqlite:test.db", "user", "password");
 
-// @Test
-// public void getJdbi_WithParameters_ReturnsValidJdbiInstance() {
-// Jdbi jdbi = dbConnect.getJdbi("jdbc:h2:mem:test", "username", "password");
+//         assertNotNull(resultJdbi);
+//     }
 
-// assertNotNull(jdbi);
-// // Add more assertions if needed
-// }
+//     @Test
+//     void testCreateAllTables() {
+//         // Creating an in-memory database for testing
+//         // Jdbi testJdbi = Jdbi.create("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;");
+//         // dbConnect.installSqlObjectPlugin(testJdbi);
 
-// @Test
-// public void loadProperties_ValidConfigFile_PropertiesLoadedSuccessfully()
-// throws IOException {
-// // Create a temporary config file
-// Path tempConfigFile = Files.createTempFile("tempConfig", ".txt");
-// Files.writeString(tempConfigFile, "db.url=jdbc:h2:mem:test");
+//         // Creating tables
+//         dbConnect.createAllTables();
 
-// // Set the config file path in the DbConnect instance
-// dbConnect.setConfigFilePath(tempConfigFile.toString());
+//         System.out.println(dbConnect.getJdbi());
 
-// // Load properties
-// dbConnect.loadProperties();
+//         // Verifying that tables exist
+//         assertTrue(tableExists(dbConnect.getJdbi(), "Customers"));
+//         assertTrue(tableExists(dbConnect.getJdbi(), "Readings"));
+//         assertTrue(tableExists(dbConnect.getJdbi(), "Users"));
+//     }
 
-// // Verify that properties are loaded
-// assertNotNull(dbConnect.getDbProperties().getProperty("db.url"));
+//     @Test
+//     void testRemoveAllTables() {
+//         // Creating an in-memory database for testing
+//         // Jdbi testJdbi = Jdbi.create("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;");
+//         // // Jdbi testJdbi = new DbConnect().getJdbi();
+//         // dbConnect.installSqlObjectPlugin(testJdbi);
 
-// // Clean up
-// Files.deleteIfExists(tempConfigFile);
-// }
+//         // Creating tables
+//         dbConnect.createAllTables();
 
-// @Test
-// public void
-// createAndRemoveAllTables_ValidTables_TablesCreatedAndRemovedSuccessfully() {
-// // Create tables
-// dbConnect.createAllTables();
+//         // Removing tables
+//         dbConnect.removeAllTables();
 
-// // Check if tables exist
-// assertTrue(dbConnect.tablesExist());
+//         // Verifying that tables do not exist
+//         assertFalse(dbConnect.tablesExist());
+//     }
 
-// // Remove tables
-// dbConnect.removeAllTables();
+//     @Test
+//     void testTablesExist() {
+//         // Creating an in-memory database for testing
+//         Jdbi testJdbi = Jdbi.create("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;");
+//         dbConnect.installSqlObjectPlugin(testJdbi);
 
-// // Check if tables are removed
-// assertFalse(dbConnect.tablesExist());
-// }
+//         // Verifying that tables do not exist initially
+//         assertFalse(dbConnect.tablesExist());
 
-// @Test
-// public void removeAllTables_NoTablesToDrop_NoExceptionThrown() {
-// // This test ensures that calling removeAllTables when no tables exist does
-// not
-// // throw an exception
-// assertDoesNotThrow(() -> dbConnect.removeAllTables());
-// }
+//         // Creating tables
+//         dbConnect.createAllTables();
+
+//         // Verifying that tables exist after creation
+//         assertTrue(dbConnect.tablesExist());
+
+//         // Removing tables
+//         dbConnect.removeAllTables();
+
+//         // Verifying that tables do not exist after removal
+//         assertFalse(dbConnect.tablesExist());
+//     }
+
+//     @Test
+//     void testLoadProperties() {
+//         // Creating a ByteArrayInputStream with test properties
+//         String testProperties = "db.url=jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;";
+//         InputStream inputStream = new ByteArrayInputStream(testProperties.getBytes());
+
+//         // Setting the test config file path
+//         dbConnect.setConfigFilePath("src/test/resources/config.txt");
+
+//         // Loading properties
+//         dbConnect.loadProperties();
+
+//         // Verifying that properties are loaded correctly
+//         assertEquals("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;", dbConnect.getDbProperties().getProperty("db.url"));
+//     }
+
+//     // private boolean tableExists(Jdbi jdbi, String tableName) {
+//     // try (Handle handle = jdbi.open()) {
+//     // Query query = handle
+//     // .createQuery("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE
+//     // TABLE_NAME= :tableName")
+//     // .bind("tableName", tableName);
+//     // return query.mapTo(Integer.class).one() > 0;
+//     // } catch (Exception e) {
+//     // e.printStackTrace();
+//     // return false;
+//     // }
+//     // }
+//     private boolean tableExists(Jdbi jdbi, String tableName) {
+//         try (Handle handle = jdbi.open()) {
+//             String sql = "SELECT 1 FROM " + tableName + " LIMIT 1";
+//             List<Integer> result = handle.createQuery(sql)
+//                     .mapTo(Integer.class)
+//                     .list();
+
+//             return !result.isEmpty();
+//         } catch (Exception e) {
+//             // Assuming SQLException is thrown when the table doesn't exist
+//             return false;
+//         }
+//     }
+
 // }
