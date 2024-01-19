@@ -39,4 +39,12 @@ public class RUser implements IRUser {
     @XmlElement
     @JsonProperty
     private String Token;
+
+    public RUser(String firstName, String lastName, String password, String token, int userID) {
+        this.UserID = userID;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Password = password;
+        this.Token = token;
+    }
 }

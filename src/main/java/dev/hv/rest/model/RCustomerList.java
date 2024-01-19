@@ -10,7 +10,7 @@ public class RCustomerList extends ArrayList<IRCustomer> {
    }
 
    public RCustomerList(final Collection<? extends RCustomer> c) { 
-
+      super(c);
    }
 
    public RCustomerList(final int initialCapacity) {

@@ -10,7 +10,7 @@ public class RestServer {
         static DbConnect db = new DbConnect();
 
         public static final String pack = "dev.hv.rest.model";
-        public static final String url = "http://localhost:8080/rest";
+        public static final String url = "http://localhost:8080/";
         public static Jdbi jdbi = db.getJdbi();
 
     public static void main(final String[] args) {
