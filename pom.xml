@@ -82,11 +82,11 @@
 			<version>1.18.22</version>
 			<scope>provided</scope>
 		</dependency>
-	<dependency>
-		<groupId>org.scala-lang</groupId>
-		<artifactId>scala-library</artifactId>
-		<version>2.13.0</version>
-	</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.13.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
@@ -108,41 +108,39 @@
 			<version>2.1.6</version>
 			<scope>provided</scope>
 		</dependency>
-		   <!-- Jersey Core -->
-    <dependency>
-        <groupId>org.glassfish.jersey.core</groupId>
-        <artifactId>jersey-server</artifactId>
-        <version>2.34</version>
-    </dependency>
+		<!-- Jersey Core -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>2.34</version>
+		</dependency>
 
-    <!-- Jersey JDK HTTP Server (Grizzly) -->
-    <dependency>
-        <groupId>org.glassfish.jersey.containers</groupId>
-        <artifactId>jersey-container-grizzly2-http</artifactId>
-        <version>2.34</version>
-    </dependency>
+		<!-- Jersey JDK HTTP Server (Grizzly) -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-http</artifactId>
+			<version>2.34</version>
+		</dependency>
 
-    <!-- Jersey Common -->
-    <dependency>
-        <groupId>org.glassfish.jersey.core</groupId>
-        <artifactId>jersey-common</artifactId>
-        <version>2.34</version>
-    </dependency>
+		<!-- Jersey Common -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>2.34</version>
+		</dependency>
 
-    <!-- Jersey Media JSON Jackson -->
-    <dependency>
-        <groupId>org.glassfish.jersey.media</groupId>
-        <artifactId>jersey-media-json-jackson</artifactId>
-        <version>2.34</version>
-    </dependency>
- 
-   <dependency>
-     <groupId>org.glassfish.jersey.containers</groupId>
-     <artifactId>jersey-container-jdk-http</artifactId>
-     <version>2.41</version>
-   </dependency>
- </dependencies>
+		<!-- Jersey Media JSON Jackson -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.34</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jdk-http</artifactId>
+			<version>2.41</version>
+		</dependency>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
