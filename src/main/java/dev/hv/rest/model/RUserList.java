@@ -10,7 +10,7 @@ public class RUserList extends ArrayList<IRUser> {
    }
 
    public RUserList(final Collection<? extends RUser> u) { 
-
+      super(u);
    }
 
    public RUserList(final int initialCapacity) {

@@ -1,5 +1,6 @@
 package dev.hv.rest.model;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,6 +11,7 @@ import javax.xml.transform.stax.StAXResult;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +43,7 @@ public class RReading implements IRCustomer {
 
     @XmlElement
     @JsonProperty
-    private double MeterCOunt;
+    private double MeterCount;
 
     @XmlElement
     @JsonProperty
