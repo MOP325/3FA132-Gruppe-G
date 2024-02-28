@@ -1,5 +1,6 @@
 package dev.hv.rest.util;
 
+import dev.hv.db.dao.DAOUser;
 import dev.hv.db.dao.UserDAO;
 import dev.hv.db.model.User;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
-    private final UserDAO userDAO;
+    private UserDAO userDAO;
 
     public UserResource(UserDAO userDAO) {
         this.userDAO = userDAO;
