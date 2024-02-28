@@ -26,15 +26,8 @@ public class RestServer {
     public static final String url = "http://localhost:8080";
     static final Jdbi jdbi = dbConnect.getJdbi();
 
-<<<<<<< Updated upstream
-        public static final String pack = "dev.hv.rest.model";
-        public static final String url = "http://localhost:8080/";
-        public static Jdbi jdbi = db.getJdbi();
 
-    public static void main(final String[] args) {
-=======
     public static void main(final String[] args) throws IOException {
->>>>>>> Stashed changes
         System.out.println("Start server");
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
         server.createContext("/", new MyHandler());
