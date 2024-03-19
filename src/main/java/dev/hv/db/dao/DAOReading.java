@@ -13,7 +13,6 @@ public class DAOReading {
         jdbi = dbConnect.getJdbi();
     }
 
-
     public void insert(Reading reading) {
         jdbi.useExtension(ReadingDAO.class,
                 dao -> dao.insert(reading.getcId(), reading.getMeterId(), reading.getDateOfReading(),

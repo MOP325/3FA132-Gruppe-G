@@ -12,8 +12,6 @@ import java.util.List;
 
 import org.jdbi.v3.core.Jdbi;
 
-import dev.hv.db.dao.DAOUser;
-import dev.hv.db.dao.UserDAO;
 import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.User;
 import dev.hv.rest.util.UserResource;
@@ -56,9 +54,7 @@ public class RestServer {
     public static class UserApiHandler implements HttpHandler {
         private UserResource userResource;
 
-        public UserApiHandler() {
-            this.userResource = new UserResource(UserDAOFactory.getUserDAO());
-        }
+
         @Override
         public void handle(HttpExchange exchange) throws IOException {
             String requestMethod = exchange.getRequestMethod();
