@@ -1,7 +1,6 @@
 package dev.hv.db.dao;
 
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import dev.hv.db.model.Reading;
 

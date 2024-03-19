@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.Date;
 
-import javax.sound.midi.SysexMessage;
-
 import org.junit.Test;
 
 import dev.hv.rest.model.RCustomer;

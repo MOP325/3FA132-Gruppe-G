@@ -5,6 +5,9 @@ import dev.hv.db.model.Customer;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import com.sun.net.httpserver.HttpExchange;
+
 import java.util.List;
 
 @Path("/customers")
@@ -51,5 +54,10 @@ public class CustomerResource {
     @Path("/{id}")
     public void deleteCustomer(@PathParam("id") int id) {
         customerDAO.delete(id);
+    }
+
+    public void handle(HttpExchange exchange) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'handle'");
     }
 }
