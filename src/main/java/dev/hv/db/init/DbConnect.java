@@ -95,16 +95,7 @@ public class DbConnect implements IDbConnect {
         }
     }
 
-    private String configFilePath;
-
-    public void setConfigFilePath(String configFilePath) {
-        this.configFilePath = configFilePath;
-    }
-
-    public Properties getDbProperties() {
-        return dbProperties;
-    }
-
+    // Quick check if the table exists
     public boolean tablesExist() {
         boolean customersTableExists = false;
         boolean readingTableExists = false;

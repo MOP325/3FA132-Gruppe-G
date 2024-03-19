@@ -8,7 +8,6 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import dev.hv.rest.model.IRReading;
 import dev.hv.rest.model.RReading;
 import dev.hv.rest.model.RReadingList;
 

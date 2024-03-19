@@ -1,17 +1,16 @@
 package dev.hv.db.dao;
-
 import java.util.List;
-
 import org.jdbi.v3.core.Jdbi;
-
+import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.User;
 
-class UserDAO {
+public class DAOUser {
 
     private Jdbi jdbi;
 
-    public UserDAO(Jdbi jdbi) {
-        this.jdbi = jdbi;
+    public DAOUser() {
+        DbConnect dbConnect = new DbConnect();
+        jdbi = dbConnect.getJdbi();
     }
 
     public void insert(User user) {
@@ -32,9 +31,5 @@ class UserDAO {
 
     public void delete(int id) {
         jdbi.useExtension(UserDAO.class, dao -> dao.delete(id));
-    }
-
-    public static UserDAO getInstance() {
-        return new UserDAO(jdbi.onDemand(UserDAO.class));
     }
 }
