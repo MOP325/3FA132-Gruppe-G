@@ -1,9 +1,7 @@
 package dev.hv.db.dao;
-
 import org.jdbi.v3.core.Jdbi;
-
+import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.Reading;
-
 import java.util.List;
 
 public class DAOReading {
@@ -11,8 +9,10 @@ public class DAOReading {
     private Jdbi jdbi;
 
     public DAOReading() {
-        jdbi = Jdbi.create("jdbc:your_database_url", "username", "password");
+        DbConnect dbConnect = new DbConnect();
+        jdbi = dbConnect.getJdbi();
     }
+
 
     public void insert(Reading reading) {
         jdbi.useExtension(ReadingDAO.class,

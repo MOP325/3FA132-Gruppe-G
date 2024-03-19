@@ -2,6 +2,7 @@ package dev.hv.db.dao;
 
 import org.jdbi.v3.core.Jdbi;
 
+import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.Customer;
 
 import java.util.List;
@@ -11,7 +12,8 @@ public class DAOCustomer {
     private Jdbi jdbi;
 
     public DAOCustomer() {
-        jdbi = Jdbi.create("jdbc:your_database_url", "username", "password");
+        DbConnect dbConnect = new DbConnect();
+        jdbi = dbConnect.getJdbi();
     }
 
     public void insert(Customer customer) {

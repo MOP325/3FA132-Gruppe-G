@@ -8,7 +8,6 @@ import dev.hv.db.dao.CustomerDAO;
 import dev.hv.db.model.Customer;
 import dev.hv.db.init.DbConnect;
 import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.mapper.reflect.BeanMapper;
 
 import java.util.List;
