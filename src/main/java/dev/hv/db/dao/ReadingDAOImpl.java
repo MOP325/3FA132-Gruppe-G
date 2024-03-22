@@ -1,17 +1,14 @@
 package dev.hv.db.dao;
 import org.jdbi.v3.core.Jdbi;
-import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.Reading;
 import java.util.List;
+import java.util.Properties;
 
-public class DAOReading {
+public class ReadingDAOImpl {
 
-    private Jdbi jdbi;
+    private Properties dbProperties = new Properties();
 
-    public DAOReading() {
-        DbConnect dbConnect = new DbConnect();
-        jdbi = dbConnect.getJdbi();
-    }
+    Jdbi jdbi = Jdbi.create(dbProperties.getProperty("db.url"));
 
     public void insert(Reading reading) {
         jdbi.useExtension(ReadingDAO.class,

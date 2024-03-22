@@ -2,7 +2,6 @@ package dev.hv.db.model;
 import java.beans.ConstructorProperties;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
-
 import lombok.NoArgsConstructor;
 
 // Class for managing user data
@@ -83,5 +82,4 @@ public class User implements IDUser {
     public void setToken(String token) {
         Token = token;
     }
-
 }

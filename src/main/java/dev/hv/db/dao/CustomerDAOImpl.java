@@ -2,19 +2,16 @@ package dev.hv.db.dao;
 
 import org.jdbi.v3.core.Jdbi;
 
-import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.Customer;
 
 import java.util.List;
+import java.util.Properties;
 
-public class DAOCustomer {
+public class CustomerDAOImpl {
 
-    private Jdbi jdbi;
+    private Properties dbProperties = new Properties();
 
-    public DAOCustomer() {
-        DbConnect dbConnect = new DbConnect();
-        jdbi = dbConnect.getJdbi();
-    }
+    Jdbi jdbi = Jdbi.create(dbProperties.getProperty("db.url"));
 
     public void insert(Customer customer) {
         jdbi.useExtension(CustomerDAO.class, dao -> dao.insert(customer.getFirstName(), customer.getLastName()));

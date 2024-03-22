@@ -1,9 +1,11 @@
 package dev.hv.consoleClient;
+
 import java.util.Arrays;
 
-// Das ganze Projekt in src/main/java ausführen
-// mit javac dev/hv/consoleClient/StartHV.java builden
-// mit Java dev.hv.consoleClient.StartHV <args> ausführen
+import dev.hv.consoleClient.ImportFile.ImportCSV;
+import dev.hv.consoleClient.ImportFile.ImportJson;
+import dev.hv.consoleClient.ImportFile.ImportXML;
+
 public class StartHV {
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -22,7 +24,7 @@ public class StartHV {
                 handleExport(Arrays.copyOfRange(args, 1, args.length));
                 break;
             case "import":
-                handleImport(Arrays.copyOfRange(args, 1, args.length));            
+                handleImport(Arrays.copyOfRange(args, 1, args.length));
                 break;
             default:
                 System.out.println("Unrecognized command: " + args[0]);
@@ -34,34 +36,16 @@ public class StartHV {
         String format = args[0];
         switch (format) {
             case "-c":
-                dev.hv.consoleClient.ExportHV.exportToCSV(args[1], args[2]);
+                dev.hv.consoleClient.ExportFile.ExportHV.exportToCSV(args[1], args[2]);
                 break;
             case "-j":
-                dev.hv.consoleClient.ExportHV.exportToJSON(args[1], args[2]);
+                dev.hv.consoleClient.ExportFile.ExportHV.exportToJSON(args[1], args[2]);
                 break;
             case "-x":
-                dev.hv.consoleClient.ExportHV.exportToXML(args[1], args[2]);    
+                dev.hv.consoleClient.ExportFile.ExportHV.exportToXML(args[1], args[2]);
                 break;
             case "-t":
-                dev.hv.consoleClient.ExportHV.exportToText(args[1], args[2]);    
-                break;
-            default:
-                printHelp();    
-                break;
-        }
-    }
-
-    private static void handleImport(String[] args) {
-        String format = args[0];
-        switch (format) {
-            case "-c":
-                dev.hv.consoleClient.ImportHV.importFromCSV(args[1], args[2]);
-                break;
-            case "-j":
-                dev.hv.consoleClient.ImportHV.importFromJson(args[1], args[2]);
-                break;
-            case "-x":
-                dev.hv.consoleClient.ImportHV.importFromXML(args[1], args[2]);    
+                dev.hv.consoleClient.ExportFile.ExportHV.exportToText(args[1], args[2]);
                 break;
             default:
                 printHelp();
@@ -69,9 +53,30 @@ public class StartHV {
         }
     }
 
-    private static void deleteTables() {
-        System.out.println("Test");        
+    private static void handleImport(String[] args) {
+        String format = args[0];
+        ImportCSV importCSV = new ImportCSV();
+        ImportJson importJson = new ImportJson();
+        ImportXML importXML = new ImportXML();
 
+        switch (format) {
+            case "-c":
+                importCSV.pickTable(args[1], args[2]);
+                break;
+            case "-j":
+                importJson.pickTable(args[1], args[2]);
+                break;
+            case "-x":
+                importXML.pickTable((args[1], args[2]);
+                break;
+            default:
+                printHelp();
+                break;
+            }
+    }
+
+    private static void deleteTables() {
+        System.out.println("Test");
     }
 
     private static void printHelp() {

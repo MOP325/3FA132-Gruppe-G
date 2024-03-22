@@ -1,0 +1,12 @@
+<users>
+  <user>
+    <Id>1</Id>
+    <FirstName>John</FirstName>
+    <LastName>Doe</LastName>
+  </user>
+  <user>
+    <Id>2</Id>
+    <FirstName>Jane</FirstName>
+    <LastName>Doe</LastName>
+  </user>
+</users>

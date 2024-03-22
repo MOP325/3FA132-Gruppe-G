@@ -1,17 +1,15 @@
 package dev.hv.db.dao;
 import java.util.List;
+import java.util.Properties;
+
 import org.jdbi.v3.core.Jdbi;
-import dev.hv.db.init.DbConnect;
 import dev.hv.db.model.User;
 
-public class DAOUser {
+public class UserDAOImpl {
+    
+    private Properties dbProperties = new Properties();
 
-    private Jdbi jdbi;
-
-    public DAOUser() {
-        DbConnect dbConnect = new DbConnect();
-        jdbi = dbConnect.getJdbi();
-    }
+    Jdbi jdbi = Jdbi.create(dbProperties.getProperty("db.url"));
 
     public void insert(User user) {
         jdbi.useExtension(UserDAO.class, dao -> dao.insert(user.getFirstName(), user.getLastName(), user.getPassword(), user.getToken()));
