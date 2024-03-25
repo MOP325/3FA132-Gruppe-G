@@ -1,6 +1,6 @@
 package dev.hv.rest.util;
 
-import dev.hv.db.dao.DAOUser;
+import dev.hv.db.dao.UserDAOImpl;
 import dev.hv.db.dao.UserDAO;
 import dev.hv.db.model.User;
 

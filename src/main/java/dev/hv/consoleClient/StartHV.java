@@ -5,6 +5,7 @@ import java.util.Arrays;
 import dev.hv.consoleClient.ImportFile.ImportCSV;
 import dev.hv.consoleClient.ImportFile.ImportJson;
 import dev.hv.consoleClient.ImportFile.ImportXML;
+import dev.hv.db.init.DbConnect;
 
 public class StartHV {
     public static void main(String[] args) {
@@ -67,7 +68,7 @@ public class StartHV {
                 importJson.pickTable(args[1], args[2]);
                 break;
             case "-x":
-                importXML.pickTable((args[1], args[2]);
+                importXML.pickTable(args[1], args[2]);
                 break;
             default:
                 printHelp();
@@ -76,10 +77,11 @@ public class StartHV {
     }
 
     private static void deleteTables() {
-        System.out.println("Test");
+        DbConnect dbConnect = new DbConnect();
+        dbConnect.removeAllTables();
     }
 
-    private static void printHelp() {
+    public static void printHelp() {
         System.out.println("StartHV - Java Console Client\n");
         System.out.println("Version: 1.0\n");
         System.out.println("Beschreibung:");
